@@ -1,7 +1,7 @@
 /* =====================================================================
    WWE Travel CY · "Kipar koji poznajemo" · embeddable editorial section
    Brand: Inter · accent #E8593C · ink #1A1A1A · body #555 · meta #888
-   Frame heights (see README): desktop 900 · tablet 1460 · mobile 1720
+   Frame heights (see README): desktop 780 · tablet 1240 · mobile 1540
    ===================================================================== */
 
 :root {
@@ -21,8 +21,8 @@
   --ease-power3: cubic-bezier(0.215, 0.61, 0.355, 1);
   --ease-inout: cubic-bezier(0.65, 0, 0.35, 1);
 
-  --gutter: 40px;
-  --doc-h: 900px;       /* the iframe height this layout is designed for */
+  --gutter: 32px;
+  --doc-h: 780px;       /* the iframe height this layout is designed for */
   --layout: desktop;    /* read by section.js */
   --k: 1.6;             /* SVG units per screen px, set by section.js */
   --ms: 1;              /* marker scale, set by section.js */
@@ -63,10 +63,9 @@ button { font: inherit; color: inherit; }
 html.is-embedded .wwe { height: 100vh; }
 
 .wwe__inner {
-  max-width: 1240px;
   height: 100%;
-  margin: 0 auto;
-  padding: 40px var(--gutter) 26px;
+  margin: 0;
+  padding: 28px var(--gutter) 20px;
   display: flex;
   flex-direction: column;
 }
@@ -75,8 +74,8 @@ html.is-embedded .wwe { height: 100vh; }
    Eyebrow, headline, intro
    --------------------------------------------------------------------- */
 .eyebrow {
-  margin: 0 0 14px;
-  font-size: 11.5px;
+  margin: 0 0 10px;
+  font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -85,19 +84,19 @@ html.is-embedded .wwe { height: 100vh; }
 
 .head {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 380px);
-  gap: 48px;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 400px);
+  gap: 40px;
   align-items: end;
-  padding-bottom: 44px;
+  padding-bottom: 28px;
   border-bottom: 1px solid var(--line-2);
   flex: none;
 }
 
 .title {
   margin: 0;
-  font-size: clamp(44px, 4.2vw, 52px);
+  font-size: 34px;
   font-weight: 600;
-  line-height: 1.02;
+  line-height: 1.04;
   letter-spacing: -1px;
   color: var(--ink);
 }
@@ -116,16 +115,16 @@ html.is-embedded .wwe { height: 100vh; }
 
 .intro {
   margin: 0;
-  font-size: 15px;
+  font-size: 14px;
   line-height: 1.6;
   color: var(--body);
 }
 .head__meta {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px 18px;
-  margin: 14px 0 0;
-  font-size: 11px;
+  gap: 5px 16px;
+  margin: 10px 0 0;
+  font-size: 10px;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -135,7 +134,7 @@ html.is-embedded .wwe { height: 100vh; }
 .head__meta span + span::before {
   content: '';
   position: absolute;
-  left: -11px;
+  left: -10px;
   top: 50%;
   width: 3px;
   height: 3px;
@@ -152,8 +151,8 @@ html.is-embedded .wwe { height: 100vh; }
   min-height: 0;
   display: grid;
   grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr);
-  gap: 56px;
-  padding-top: 44px;
+  gap: 48px;
+  padding-top: 24px;
 }
 
 /* ---------- Map ---------- */
@@ -165,7 +164,7 @@ html.is-embedded .wwe { height: 100vh; }
 }
 
 .map__cap {
-  font-size: 11px;
+  font-size: 10.5px;
   font-weight: 500;
   letter-spacing: 0.02em;
   color: var(--meta);
@@ -194,7 +193,7 @@ html.is-embedded .wwe { height: 100vh; }
   position: relative;
   flex: 1 1 auto;
   min-height: 0;
-  margin: 6px 0 10px;
+  margin: 4px 0 8px;
 }
 .map__svg {
   position: absolute;
@@ -404,7 +403,7 @@ html:not(.reduced-motion) .map.st-done .rings { animation: ringsBreathe 7s ease-
   flex-direction: column;
   gap: 4px;
   align-items: flex-start;
-  padding: 12px 10px 2px 0;
+  padding: 10px 10px 2px 0;
   margin: 0;
   background: none;
   border: 0;
@@ -413,7 +412,7 @@ html:not(.reduced-motion) .map.st-done .rings { animation: ringsBreathe 7s ease-
   -webkit-tap-highlight-color: transparent;
 }
 .rg__num {
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 600;
   letter-spacing: 0.08em;
   color: var(--meta);
@@ -421,7 +420,7 @@ html:not(.reduced-motion) .map.st-done .rings { animation: ringsBreathe 7s ease-
   transition: color 0.4s var(--ease-power3);
 }
 .rg__name {
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
   line-height: 1.3;
   letter-spacing: -0.1px;
@@ -457,9 +456,9 @@ html:not(.reduced-motion) .map.st-done .rings { animation: ringsBreathe 7s ease-
   flex: none;
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin: 10px 0 0;
-  font-size: 10.5px;
+  gap: 10px;
+  margin: 8px 0 0;
+  font-size: 10px;
   font-weight: 600;
   line-height: 1.4;
   letter-spacing: 0.08em;
@@ -470,8 +469,8 @@ html:not(.reduced-motion) .map.st-done .rings { animation: ringsBreathe 7s ease-
 .hint__icon {
   position: relative;
   flex: none;
-  width: 36px;
-  height: 36px;
+  width: 32px;
+  height: 32px;
   color: var(--accent);
 }
 .hint__icon::before {
@@ -485,8 +484,8 @@ html:not(.reduced-motion) .map.st-done .rings { animation: ringsBreathe 7s ease-
 .hint__icon svg {
   position: relative;
   display: block;
-  width: 36px;
-  height: 36px;
+  width: 32px;
+  height: 32px;
   padding: 3px;
   fill: currentColor;
   transform-origin: 50% 80%;
@@ -495,10 +494,10 @@ html:not(.reduced-motion) .map.st-done .rings { animation: ringsBreathe 7s ease-
 .hint__ring {
   /* centred on the fingertip */
   position: absolute;
-  left: 11.3px;
+  left: 10px;
   top: 0.5px;
-  width: 12px;
-  height: 12px;
+  width: 11px;
+  height: 11px;
   border: 2px solid var(--accent);
   border-radius: 50%;
   opacity: 0;
@@ -532,18 +531,18 @@ html.js:not(.reduced-motion) .map:not(.st-done) .hint { opacity: 0; }
 }
 .panel__bignum {
   position: absolute;
-  top: -34px;
-  right: -12px;
+  top: -24px;
+  right: -8px;
   z-index: 0;
   pointer-events: none;
   perspective: 900px;
 }
 .bignum {
   display: block;
-  font-size: 230px;
+  font-size: 170px;
   font-weight: 700;
   line-height: 0.82;
-  letter-spacing: -10px;
+  letter-spacing: -7px;
   color: transparent;
   -webkit-text-stroke: 1.2px rgba(232, 89, 60, 0.32);
   font-variant-numeric: tabular-nums;
@@ -554,15 +553,15 @@ html.js:not(.reduced-motion) .map:not(.st-done) .hint { opacity: 0; }
   position: relative;
   z-index: 1;
   flex: none;
-  padding-right: 120px;
-  margin-bottom: 18px;
+  padding-right: 90px;
+  margin-bottom: 14px;
 }
 .panel__kicker {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   margin: 0;
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -570,11 +569,11 @@ html.js:not(.reduced-motion) .map:not(.st-done) .hint { opacity: 0; }
   white-space: nowrap;
 }
 .panel__idx { color: var(--accent); font-variant-numeric: tabular-nums; }
-.panel__rule { width: 28px; height: 1px; background: var(--ink); opacity: 0.6; }
+.panel__rule { width: 24px; height: 1px; background: var(--ink); opacity: 0.6; }
 .panel__coords { margin-left: 8px; letter-spacing: 0.04em; font-weight: 500; }
 .panel__name {
-  margin: 10px 0 8px;
-  font-size: clamp(30px, 2.9vw, 38px);
+  margin: 8px 0 6px;
+  font-size: 28px;
   font-weight: 600;
   line-height: 1.06;
   letter-spacing: -1px;
@@ -582,8 +581,8 @@ html.js:not(.reduced-motion) .map:not(.st-done) .hint { opacity: 0; }
 }
 .panel__line {
   margin: 0;
-  max-width: 40ch;
-  font-size: 15px;
+  max-width: 44ch;
+  font-size: 14px;
   line-height: 1.55;
   color: var(--body);
 }
@@ -595,7 +594,7 @@ html.js:not(.reduced-motion) .map:not(.st-done) .hint { opacity: 0; }
   min-height: 0;
   display: grid;
   grid-template-columns: minmax(0, 0.94fr) minmax(0, 1.06fr);
-  gap: 28px;
+  gap: 24px;
 }
 
 /* ---------- Cover card + postcards ---------- */
@@ -631,7 +630,7 @@ html.js:not(.reduced-motion) .map:not(.st-done) .hint { opacity: 0; }
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 20px 20px;
+  padding: 16px 16px;
   color: #fff;
   background-image:
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
@@ -662,15 +661,15 @@ html.js:not(.reduced-motion) .map:not(.st-done) .hint { opacity: 0; }
 .cv > * { position: relative; z-index: 1; }
 .cv__kicker,
 .cv__coords {
-  font-size: 10px;
+  font-size: 9px;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   opacity: 0.9;
 }
 .cv__name {
-  margin: 10px 0 8px;
-  font-size: 20px;
+  margin: 8px 0 6px;
+  font-size: 17px;
   font-weight: 600;
   line-height: 1.08;
   letter-spacing: -0.5px;
@@ -703,8 +702,8 @@ html:not(.reduced-motion) .cv.is-current { animation: drift 18s ease-in-out infi
   aspect-ratio: 4 / 3;
 }
 .postcard__cap {
-  padding: 7px 4px 9px;
-  font-size: 10.5px;
+  padding: 6px 4px 8px;
+  font-size: 10px;
   font-weight: 500;
   line-height: 1.3;
   letter-spacing: 0.01em;
@@ -774,14 +773,14 @@ html:not(.reduced-motion) .cv.is-current { animation: drift 18s ease-in-out infi
   min-height: 0;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
 }
 .fact {
   border-top: 1px solid var(--line-2);
-  padding-top: 10px;
+  padding-top: 8px;
 }
 .fact dt {
-  margin: 0 0 6px;
+  margin: 0 0 5px;
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.08em;
@@ -804,7 +803,7 @@ html:not(.reduced-motion) .cv.is-current { animation: drift 18s ease-in-out infi
 .tr b {
   font-weight: 600;
   letter-spacing: 0.06em;
-  font-size: 12px;
+  font-size: 11px;
   color: var(--meta);
   margin-right: 5px;
 }
@@ -838,8 +837,8 @@ html:not(.reduced-motion) .cv.is-current { animation: drift 18s ease-in-out infi
   align-items: center;
   justify-content: space-between;
   gap: 24px;
-  margin-top: 22px;
-  padding-top: 18px;
+  margin-top: 16px;
+  padding-top: 14px;
   border-top: 1px solid var(--line-2);
 }
 .trust {
@@ -848,7 +847,7 @@ html:not(.reduced-motion) .cv.is-current { animation: drift 18s ease-in-out infi
   flex-wrap: wrap;
   align-items: baseline;
   gap: 4px 14px;
-  font-size: 14px;
+  font-size: 13px;
   line-height: 1.5;
   color: var(--body);
 }
@@ -865,11 +864,11 @@ html:not(.reduced-motion) .cv.is-current { animation: drift 18s ease-in-out infi
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  padding: 14px 22px;
+  padding: 12px 20px;
   border-radius: 8px;
   background: var(--accent);
   color: #fff;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 500;
   line-height: 1;
   text-decoration: none;
@@ -903,56 +902,58 @@ html.js:not(.reduced-motion) .panel:not(.is-in) .postcard { opacity: 0; }
 
 /* narrower desktop frames: tighter grid, three highlights */
 @media (max-width: 1179px) and (min-width: 1000px) {
-  .body { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 40px; }
-  .panel__head { padding-right: 80px; }
-  .panel__line { font-size: 14px; }
+  .body { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 36px; }
+  .panel__head { padding-right: 70px; }
   .panel__coords { display: none; }
   .fact__list li:nth-child(n + 4) { display: none; }
   .stack { --pc-w: 72%; }
 }
 
 /* =====================================================================
-   TABLET · 768–1023px (frame 1460px)
+   TABLET · 768–1023px (frame 1240px)
    A desktop-height frame (≤1000px tall) at 1000px+ keeps the desktop layout,
-   so Wix Studio's desktop breakpoint (from 1001px) always gets the 900px design.
+   so Wix Studio's desktop breakpoint (from 1001px) always gets the 780px design.
    ===================================================================== */
 @media (max-width: 1023px) and (min-height: 1001px), (max-width: 999px) {
-  :root { --doc-h: 1460px; --layout: tablet; --gutter: 36px; }
+  :root { --doc-h: 1240px; --layout: tablet; --gutter: 28px; }
 
-  .wwe__inner { padding-top: 44px; padding-bottom: 32px; }
-  .head { grid-template-columns: minmax(0, 1fr) minmax(0, 320px); gap: 36px; }
-  .title { font-size: 52px; }
+  .wwe__inner { padding-top: 28px; padding-bottom: 22px; }
+  .head { grid-template-columns: minmax(0, 1fr) minmax(0, 340px); gap: 32px; }
+  .title { font-size: 32px; }
 
   .body {
     grid-template-columns: minmax(0, 1fr);
     grid-template-rows: auto minmax(0, 1fr);
     gap: 34px;
   }
-  .map__stage { flex: none; height: 370px; }
-  .panel__grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 36px; }
+  .map__stage { flex: none; height: 340px; }
+  .panel__grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 28px; }
   .stack { --pc-w: 56%; }
-  .postcard--b { top: 40%; }
-  .panel__head { padding-right: 150px; }
-  .bignum { font-size: 220px; }
+  .postcard--a { bottom: 6px; }
+  .postcard--b { top: 34%; }
+  .panel__head { padding-right: 110px; }
+  .bignum { font-size: 160px; }
 }
 
 /* =====================================================================
-   MOBILE · < 768px (frame 1720px)
+   MOBILE · < 768px (frame 1540px)
+   A tablet-height frame (≤1400px tall) at 750px+ keeps the tablet layout,
+   so Wix Studio's tablet breakpoint (from 751px) always gets the 1240px design.
    ===================================================================== */
-@media (max-width: 767px) {
-  :root { --doc-h: 1720px; --layout: mobile; --gutter: 18px; }
+@media (max-width: 767px) and (min-height: 1401px), (max-width: 749px) {
+  :root { --doc-h: 1540px; --layout: mobile; --gutter: 16px; }
 
-  .wwe__inner { padding-top: 34px; padding-bottom: 24px; }
-  .eyebrow { margin-bottom: 12px; font-size: 11px; }
-  .head { grid-template-columns: minmax(0, 1fr); gap: 14px; padding-bottom: 32px; }
-  .title { font-size: clamp(34px, 10.2vw, 46px); }
-  .intro { font-size: 14.5px; line-height: 1.55; }
+  .wwe__inner { padding-top: 24px; padding-bottom: 18px; }
+  .eyebrow { margin-bottom: 8px; font-size: 10.5px; }
+  .head { grid-template-columns: minmax(0, 1fr); gap: 12px; padding-bottom: 22px; }
+  .title { font-size: clamp(28px, 8.2vw, 32px); }
+  .intro { font-size: 14px; line-height: 1.55; }
   .head__meta { display: none; }
 
-  .body { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto minmax(0, 1fr); gap: 22px; padding-top: 30px; }
+  .body { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto minmax(0, 1fr); gap: 18px; padding-top: 20px; }
   .map__cap { flex-wrap: wrap; row-gap: 4px; }
   .map__legend { gap: 12px; }
-  .hint { font-size: 10px; }
+  .hint { font-size: 9.5px; }
   .map__stage { flex: none; height: clamp(200px, 60vw, 300px); margin: 4px 0 12px; }
 
   .regions {
@@ -971,8 +972,8 @@ html.js:not(.reduced-motion) .panel:not(.is-in) .postcard { opacity: 0; }
     background: var(--card);
     transition: background-color 0.4s var(--ease-power3), border-color 0.4s var(--ease-power3);
   }
-  .rg__num { font-size: 10.5px; }
-  .rg__name { font-size: 13px; font-weight: 500; }
+  .rg__num { font-size: 10px; }
+  .rg__name { font-size: 12.5px; font-weight: 500; }
   .rg__name .rg__full { display: none; }
   .rg__name .rg__short { display: inline; }
   .rg__bar { display: none; }
@@ -980,32 +981,32 @@ html.js:not(.reduced-motion) .panel:not(.is-in) .postcard { opacity: 0; }
   .rg.is-active .rg__name { color: #fff; }
   .rg.is-active .rg__num { color: var(--accent); }
 
-  .panel__bignum { top: -22px; right: -6px; }
-  .bignum { font-size: 150px; letter-spacing: -6px; }
-  .panel__head { padding-right: 70px; margin-bottom: 16px; }
+  .panel__bignum { top: -16px; right: -4px; }
+  .bignum { font-size: 120px; letter-spacing: -5px; }
+  .panel__head { padding-right: 60px; margin-bottom: 12px; }
   .panel__kicker .panel__coords { display: none; }
-  .panel__name { font-size: 32px; margin-top: 10px; }
-  .panel__line { font-size: 14.5px; }
+  .panel__name { font-size: 26px; margin-top: 8px; }
+  .panel__line { font-size: 14px; }
 
   .panel__grid {
     grid-template-columns: minmax(0, 1fr);
     grid-template-rows: minmax(230px, 1fr) auto;
-    gap: 20px;
+    gap: 16px;
   }
   .stack { --pc-w: 42%; }
   .cover { inset: 0 42% 0 0; }
   .postcard--a { top: 2%; bottom: auto; right: 0; }
   .postcard--b { top: auto; bottom: 2%; left: 9%; }
-  .facts { gap: 12px; }
-  .fact dd { font-size: 14px; }
+  .facts { gap: 10px; }
+  .fact dd { font-size: 13.5px; }
   .panel__coords { display: none; }
   .fact__list li:nth-child(n + 4) { display: none; }
 
-  .foot { flex-direction: column; align-items: stretch; gap: 16px; margin-top: 20px; padding-top: 16px; }
-  .trust { font-size: 13.5px; gap: 2px 10px; }
+  .foot { flex-direction: column; align-items: stretch; gap: 12px; margin-top: 16px; padding-top: 12px; }
+  .trust { font-size: 13px; gap: 2px 10px; }
   .trust__sep { display: none; }
   .trust__item { width: 100%; }
-  .btn { justify-content: center; padding: 15px 20px; }
+  .btn { justify-content: center; padding: 13px 20px; }
 
   .mk__label { opacity: 0; }
   .mk.is-active .mk__label { opacity: 1; }
@@ -1020,11 +1021,11 @@ html.js:not(.reduced-motion) .panel:not(.is-in) .postcard { opacity: 0; }
 
 /* very small phones (Wix mobile canvas is 320px wide) */
 @media (max-width: 359px) {
-  .title { font-size: 32px; }
-  .intro { font-size: 14px; }
+  .title { font-size: 27px; }
+  .intro { font-size: 13.5px; }
   .map__stage { height: 190px; }
-  .panel__name { font-size: 28px; }
-  .panel__line { font-size: 14px; }
+  .panel__name { font-size: 24px; }
+  .panel__line { font-size: 13.5px; }
   .panel__grid { grid-template-rows: minmax(210px, 1fr) auto; }
   .rg { padding: 7px 10px; }
   .fact dd { font-size: 13.5px; }
