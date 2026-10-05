@@ -368,7 +368,7 @@ html.is-embedded .tb { height: 100vh; }
 }
 .pay img { display: block; height: 20px; width: auto; }
 
-/* 2 · partner agencies: equal light-glass tiles, 3 + 2 */
+/* 2 · partner agencies: equal light-glass tiles, 3 + 3 */
 .partners {
   display: grid;
   grid-template-columns: repeat(6, minmax(0, 1fr));
@@ -380,8 +380,8 @@ html.is-embedded .tb { height: 100vh; }
   list-style: none;
 }
 .ptile { grid-column: span 2; }
-.ptile:nth-child(4) { grid-column: 2 / span 2; }
-.ptile:nth-child(5) { grid-column: 4 / span 2; }
+/* two full rows: lift the grid a little so the last tile clears the controls */
+.sl--partners .vis { padding-top: 12px; padding-bottom: 54px; }
 .ptile {
   display: grid;
   place-items: center;
@@ -599,6 +599,7 @@ html.reduced-motion .tb__progress { display: none; }
   .tb__ctrl { right: 10px; bottom: 9px; }
   .arrow { width: 24px; height: 24px; }
   .partners { max-width: 300px; gap: 8px; }
+  .sl--partners .vis { padding-top: 8px; padding-bottom: 46px; }
   .ptile { padding: 6px 9px; border-radius: 10px; }
   .ptile__name { font-size: 11px; }
 
@@ -633,6 +634,7 @@ html.reduced-motion .tb__progress { display: none; }
   .sl__line { font-size: 13.5px; }
   .btn { margin-top: 14px; }
   .sl--partners { grid-template-rows: 156px minmax(0, 1fr); }
+  .sl--partners .vis { padding: 14px; }
   .partners { max-width: 330px; gap: 8px; }
   .ptile { padding: 6px 10px; border-radius: 10px; }
   .ptile__name { font-size: 11.5px; }
