@@ -60,7 +60,7 @@ Seven partners are shown in a 4 + 3 grid (second row centred) of equal light-gla
 
 | Tile | File in `assets/partners/` | Status |
 |---|---|---|
-| Buena Vista | `buena-vista.png` | **Not yet supplied:** shows the name as a clean text tile |
+| Buena Vista Travel Agency | `buena-vista.png` | logo, white background removed (the white letter fills inside the blue outline are kept) |
 | Rapsody Travel & Events | `rhapsody.png` | logo, grey background removed |
 | Allegra Cruises | `allegra.png` | logo (from the SVG; the English "Cruises" version) |
 | Ventura Travel Agency | `ventura.png` | logo, white background removed |
@@ -68,7 +68,7 @@ Seven partners are shown in a 4 + 3 grid (second row centred) of equal light-gla
 | Sol Azur Travel & Events | `sol-azur.png` | logo (already transparent) |
 | Moj Kipar | `moj-kipar.png` | logo (already transparent, original colours) |
 
-- **Adding or replacing a logo:** save a PNG with a transparent background (about 200 px tall) under the exact file name above. It replaces the text tile automatically, with no code change.
+- **Adding or replacing a logo:** save a PNG with a transparent background (about 200 px tall) under the exact file name above. It appears automatically, with no code change.
 - **Missing logo:** if a logo file is missing or fails to load, its tile shows the company name in clean text instead.
 - **Visual balance:** each logo's width in its tile is set with `--w` in `index.html`, for example `style="--w:70%"`. The values are worked out so wide and square marks carry the same visual weight. For a new logo, start at about 70% for a ~1.5:1 mark, 90% for a very wide one, and 60% for a square one.
 
@@ -89,7 +89,7 @@ trust-banner/
 ├── js/banner.js        slider: autoplay, progress, pause, arrows, dots, swipe, keys
 └── assets/
     ├── deputy-ministry-logo.png   official logo, transparent PNG
-    ├── partners/       partner logos (transparent PNG; buena-vista.png still to come)
+    ├── partners/       partner logos (transparent PNG)
     ├── pay/            visa, mastercard, americanexpress, paypal, google (SVG)
     └── photos/         5 Cyprus photos
 ```
