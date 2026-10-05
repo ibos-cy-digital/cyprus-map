@@ -11,7 +11,7 @@ Published with GitHub Pages at **`https://ibos-cy-digital.github.io/cyprus-map/t
 | # | Slide | Content | Button (opens in the full window, `target="_top"`) |
 |---|---|---|---|
 | 1 | Licensed & regulated | "Licensed by the Cyprus Deputy Ministry of Tourism" · CTO Licence No. 7732 · Registered Cyprus company · official ministry logo | Licence details → `/legal-disclaimer` |
-| 2 | Trusted by travel agencies | "Partners who already work with us" · five partner logos on light glass tiles | Become a partner → `/become-a-b2b-partner` |
+| 2 | Trusted by travel agencies | "Partners who already work with us" · six partner logos on light glass tiles | Become a partner → `/become-a-b2b-partner` |
 | 3 | Award-winning | "EU Business Award Winner 2025" · Best bespoke travel · laurel badge | Plan your trip → `/tailored-program-package-request` |
 | 4 | Rated 5.0 on Google | 5 gold stars, two verbatim Google reviews (Yiannis Korfiotis, Katerina Eftychiou) | Read our reviews → Google Maps |
 | 5 | Book with confidence | Secure payments · SSL encrypted · GDPR compliant · shield, Visa, Mastercard, American Express, PayPal | Browse hotels → `/hotels` |
@@ -56,7 +56,7 @@ It shows at about 232 × 104 px on desktop, 174 × 78 px on tablet and 214 × 96
 
 ## Partner logos (slide 2)
 
-Five partners are shown in a 3 + 2 grid of equal light-glass tiles (the same style as the ministry badge), so each logo keeps its original colours. The tiles fade in one after another when the slide appears, and the grid fits as 3 + 2 at every size, including mobile.
+Six partners are shown in a 3 + 3 grid of equal light-glass tiles (the same style as the ministry badge), so each logo keeps its original colours. The tiles fade in one after another when the slide appears, and the grid fits as 3 + 3 at every size, including mobile.
 
 | Tile | File in `assets/partners/` | Status |
 |---|---|---|
@@ -65,6 +65,7 @@ Five partners are shown in a 3 + 2 grid of equal light-glass tiles (the same sty
 | Allegra Cruises | `allegra.png` | logo (from the SVG; the English "Cruises" version) |
 | Ventura Travel Agency | `ventura.png` | logo, white background removed |
 | Prometheus Holiday & Business | `prometheus.png` | logo on its own navy brand square |
+| Sol Azur Travel & Events | `sol-azur.png` | logo (already transparent) |
 
 - **Adding or replacing a logo:** save a PNG with a transparent background (about 200 px tall) under the exact file name above. It replaces the text tile automatically, with no code change.
 - **Missing logo:** if a logo file is missing or fails to load, its tile shows the company name in clean text instead.
