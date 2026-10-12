@@ -1,0 +1,378 @@
+/* =====================================================================
+   WWE Travel CY · "Cyprus, made to measure" · services slider
+   Light section, photo cards. The active card sits in the middle and
+   the neighbours step back on both sides (cover-flow).
+   Iframe heights (see README): desktop 620 · tablet 540 · mobile 660
+   ===================================================================== */
+
+:root {
+  /* palette: the trust banner's sea blue, no orange */
+  --sea: 13, 34, 54;                 /* #0D2236 */
+  --ink: #1A1A1A;
+  --body: #4A5560;
+  --eyebrow: rgba(26, 26, 26, 0.6);
+  --blue: #185FA5;
+  --blue-bg: #E6F1FB;
+  --white: #FFFFFF;
+  --sand: #EFE9E0;
+
+  /* layout */
+  --max: 1216px;
+  --pad-x: 32px;
+  --pad-top: 8px;
+  --pad-bottom: 20px;
+  --stage-h: 400px;        /* card height when the page is opened on its own */
+  --title: 34px;
+  --card-title: 26px;
+  --radius: 20px;
+  --layout: desktop;       /* read by slider.js */
+
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --move: 0.75s;
+}
+
+/* ---------------------------------------------------------------------
+   Base
+   --------------------------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
+html {
+  color-scheme: light;
+  -webkit-text-size-adjust: 100%;
+  background: var(--sand);           /* opened on its own */
+}
+html.is-embedded { background: transparent; }   /* in Wix: the section shows through */
+body {
+  margin: 0;
+  background: transparent;
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+html.is-embedded,
+html.is-embedded body { height: 100%; overflow: hidden; }
+img, svg { display: block; }
+button { font: inherit; color: inherit; }
+
+/* ---------------------------------------------------------------------
+   Section
+   --------------------------------------------------------------------- */
+.ss {
+  display: flex;
+  flex-direction: column;
+  max-width: calc(var(--max) + var(--pad-x) * 2);
+  margin: 0 auto;
+  padding: var(--pad-top) var(--pad-x) var(--pad-bottom);
+  overflow: hidden;
+}
+html.is-embedded .ss { height: 100vh; }
+
+.ss__head { flex: none; max-width: 640px; }
+.ss__eyebrow {
+  margin: 0 0 10px;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 16px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--eyebrow);
+}
+.ss__title {
+  margin: 0;
+  font-size: var(--title);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+.ss__intro {
+  margin: 10px 0 0;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--body);
+}
+
+/* the stage holds the cards; in Wix it takes whatever height is left */
+.ss__stage {
+  position: relative;
+  flex: none;
+  height: var(--stage-h);
+  margin-top: 32px;
+}
+html.is-embedded .ss__stage { flex: 1 1 auto; height: auto; min-height: 0; }
+
+/* ---------------------------------------------------------------------
+   Cards
+   --------------------------------------------------------------------- */
+.card {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin: 0;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: rgb(var(--sea));
+  box-shadow: 0 24px 48px -28px rgba(var(--sea), 0.55), 0 2px 8px -4px rgba(var(--sea), 0.25);
+  cursor: pointer;
+  transition: transform var(--move) var(--ease), opacity 0.5s ease, box-shadow var(--move) ease;
+  isolation: isolate;
+  -webkit-tap-highlight-color: transparent;
+}
+.card.is-active { cursor: default; box-shadow: 0 30px 60px -28px rgba(var(--sea), 0.65), 0 2px 8px -4px rgba(var(--sea), 0.25); }
+.card.is-far { opacity: 0.92; }
+.card.is-out { opacity: 0; pointer-events: none; }
+.is-placing .card, .is-placing .card * { transition: none !important; }
+
+.card__photo {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: var(--focus, 50% 50%);
+  transform: scale(1.08);
+  transition: transform 7s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+.card.is-active .card__photo { transform: scale(1); }   /* slow zoom-out while it is in the middle */
+
+/* sea blue gradient from the bottom, so the copy always reads */
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(180deg,
+    rgba(var(--sea), 0.18) 0%,
+    rgba(var(--sea), 0) 26%,
+    rgba(var(--sea), 0.32) 52%,
+    rgba(var(--sea), 0.9) 100%);
+}
+/* side cards step back */
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(var(--sea), 0);
+  pointer-events: none;
+  transition: background-color var(--move) ease;
+}
+.card.is-near::after { background: rgba(var(--sea), 0.3); }
+.card.is-far::after { background: rgba(var(--sea), 0.48); }
+.card:not(.is-active):hover::after { background: rgba(var(--sea), 0.18); }
+
+.card__body {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  padding: 24px 26px 26px;
+  color: var(--white);
+}
+.card__tag {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  max-width: calc(100% - 36px);
+  margin: 0;
+  padding: 6px 11px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+  color: var(--white);
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+.card__offer {
+  display: grid;
+  gap: 1px;
+  margin: 0 0 12px;
+  padding: 7px 12px 7px 26px;
+  position: relative;
+  border-radius: 10px;
+  background: var(--white);
+  color: var(--ink);
+  box-shadow: 0 8px 18px -10px rgba(var(--sea), 0.7);
+}
+.card__offer::before {
+  content: "";
+  position: absolute;
+  left: 11px;
+  top: 12px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--blue);
+  box-shadow: 0 0 0 3px var(--blue-bg);
+}
+.card__offer b { font-size: 12px; font-weight: 700; line-height: 1.3; }
+.card__offer span { font-size: 11px; line-height: 1.3; color: var(--blue); font-weight: 500; }
+.card__title {
+  margin: 0;
+  font-size: var(--card-title);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+.card__line,
+.card__btn {
+  transition: opacity 0.45s ease 0.25s, transform 0.45s var(--ease) 0.25s;
+}
+.card__line {
+  max-width: 420px;
+  margin: 8px 0 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.84);
+}
+.card__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 40px;
+  margin-top: 16px;
+  padding: 0 16px;
+  border-radius: 8px;
+  background: var(--white);
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  box-shadow: 0 6px 16px -8px rgba(var(--sea), 0.6);
+}
+.card__btn span:last-child { transition: transform 0.25s var(--ease); }
+.card__btn:hover { background: #F1F3F5; }
+.card__btn:hover span:last-child { transform: translateX(3px); }
+.card__btn:focus-visible { outline: 2px solid var(--white); outline-offset: 3px; }
+
+/* only the card in the middle shows its line and button */
+.card:not(.is-active) .card__line,
+.card:not(.is-active) .card__btn {
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: none;
+}
+
+/* ---------------------------------------------------------------------
+   Controls: arrows + dots (the active dot fills while the card plays)
+   --------------------------------------------------------------------- */
+.ss__ctrl {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 26px;
+}
+.arrow {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 1px solid rgba(var(--sea), 0.18);
+  border-radius: 50%;
+  background: var(--white);
+  color: rgb(var(--sea));
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.arrow svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.arrow:hover { background: rgb(var(--sea)); border-color: rgb(var(--sea)); color: var(--white); }
+.arrow:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+
+.dots { display: flex; align-items: center; }
+.dot {
+  display: grid;
+  place-items: center;
+  height: 28px;
+  padding: 0 4px;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+.dot::before {
+  content: "";
+  grid-area: 1 / 1;
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: rgba(var(--sea), 0.22);
+  transition: width 0.45s var(--ease), background-color 0.3s ease;
+}
+.dot i {
+  grid-area: 1 / 1;
+  justify-self: start;
+  display: none;
+  width: 28px;
+  height: 7px;
+  border-radius: 999px;
+  background: rgb(var(--sea));
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+.dot:hover::before { background: rgba(var(--sea), 0.45); }
+.dot.is-active::before { width: 28px; background: rgba(var(--sea), 0.2); }
+.dot.is-active i { display: block; }
+html.reduced-motion .dot.is-active i { transform: none !important; }
+.dot:focus-visible { outline: 2px solid var(--blue); outline-offset: -2px; border-radius: 999px; }
+
+/* ---------------------------------------------------------------------
+   Breakpoints
+   --------------------------------------------------------------------- */
+@media (max-width: 1023px) {
+  :root { --pad-x: 24px; --stage-h: 340px; --title: 28px; --card-title: 22px; }
+  .ss__stage { margin-top: 24px; }
+  .ss__ctrl { margin-top: 22px; }
+  .card__body { padding: 20px 20px 20px; }
+  .card__line { font-size: 13.5px; }
+}
+
+/* mobile (Wix's tablet frame, 750–767 px wide, keeps the tablet layout while it is short) */
+@media (max-width: 767px) and (min-height: 601px), (max-width: 749px) {
+  :root { --pad-x: 16px; --stage-h: 420px; --title: 24px; --card-title: 22px; --layout: mobile; }
+  .ss__intro { font-size: 14px; }
+  .ss__stage { margin-top: 22px; }
+  .ss__ctrl { margin-top: 20px; gap: 10px; }
+  .card__body { padding: 18px 18px 20px; }
+  .card__tag { top: 14px; left: 14px; }
+}
+
+@media (max-width: 359px) {
+  :root { --card-title: 20px; }
+  .card__line { font-size: 13px; }
+  .card__btn { font-size: 13px; padding: 0 14px; }
+}
+
+/* ---------------------------------------------------------------------
+   Reduced motion: cards switch instantly, no zoom
+   --------------------------------------------------------------------- */
+html.reduced-motion *,
+html.reduced-motion *::before,
+html.reduced-motion *::after {
+  animation-duration: 0.001ms !important;
+  animation-delay: 0ms !important;
+  transition-duration: 0.001ms !important;
+  transition-delay: 0ms !important;
+}
+html.reduced-motion .card__photo { transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0.001ms !important;
+    transition-delay: 0ms !important;
+  }
+}
