@@ -3,7 +3,7 @@
    One card on the page content grid (max 1216 px, radius 24 px).
    Each slide: its photo full-bleed under a deep sea blue gradient,
    copy on the left, a visual on the right (hidden on mobile).
-   Iframe heights (see README): desktop 384 · tablet 344 · mobile 424
+   Iframe heights (see README): desktop 384 · tablet 344 · mobile 480
    ===================================================================== */
 
 :root {
@@ -482,13 +482,12 @@ html.reduced-motion .tb__progress { display: none; }
 
 /* mobile (Wix's tablet frame, 750–767 px wide, keeps the tablet layout while it is short) */
 @media (max-width: 767px) and (min-height: 381px), (max-width: 749px) {
-  :root { --card-h: 400px; --pad-x: 16px; --in-x: 22px; --in-y: 24px; --title: 23px; --line: 14px; --radius: 20px; }
+  :root { --card-h: 456px; --pad-x: 16px; --in-x: 22px; --in-y: 24px; --title: 23px; --line: 14px; --radius: 20px; }
   .sl {
     grid-template-columns: minmax(0, 1fr);
     align-items: end;
     padding-bottom: 76px;            /* the controls sit below the copy */
   }
-  .sl__visual { display: none; }
   .sl__text { max-width: none; }
   /* the gradient runs top to bottom: photo above, copy below */
   .sl__media::after {
@@ -500,7 +499,66 @@ html.reduced-motion .tb__progress { display: none; }
   }
   .btn { margin-top: 18px; }
   .tb__ctrl { left: 50%; right: auto; bottom: 18px; transform: translateX(-50%); }
+
+  /* compact visual: one row at the top of the card, over the photo */
+  .sl__visual {
+    position: absolute;
+    top: 22px;
+    left: var(--in-x);
+    right: var(--in-x);
+    display: block;
+    padding: 0;
+  }
+  .vis { justify-content: flex-start; }
+  .sl--reviews .sl__visual { display: none; }     /* the stars in the eyebrow say it */
+
+  /* licence and payments: just the white tiles, no glass card */
+  .licence, .secure { width: auto; max-width: none; padding: 0; background: none; border: 0; box-shadow: none; -webkit-backdrop-filter: none; backdrop-filter: none; }
+  .glass__head { display: none; }
+  .licence__logo { height: 64px; margin: 0; padding: 7px 12px; }
+  .licence__logo img { max-height: 50px; }
+  .pay { display: flex; gap: 8px; margin: 0; }
+  .pay li { width: 58px; height: 38px; padding: 7px; border-radius: 10px; }
+  .pay img { height: 24px; }
+
+  /* award: a small medallion, darker glass so it reads on a bright photo */
+  .sl--award .vis { padding-right: 0; }
+  .medallion { width: 76px; height: 76px; background: rgba(var(--sea), 0.35); border-color: rgba(255, 255, 255, 0.28); }
+  .medallion__ring { inset: 5px; }
+  .medallion small { display: none; }
+  .medallion b { font-size: 27px; }
+
+  /* partners: a slow, endless row of logos (the list is doubled by banner.js) */
+  .sl--partners .vis {
+    margin: 0 calc(var(--in-x) * -1);
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 var(--in-x), #000 calc(100% - var(--in-x)), transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 var(--in-x), #000 calc(100% - var(--in-x)), transparent);
+  }
+  .partners {
+    display: flex;
+    gap: 0;
+    width: max-content;
+    max-width: none;
+    padding: 4px 0 8px;
+    animation: marquee 32s linear infinite;
+  }
+  .partners:hover { animation-play-state: paused; }
+  .sl.is-active .ptile { animation: none; }
+  .ptile, .ptile:nth-child(5) {
+    flex: none;
+    width: 92px;
+    height: 50px;
+    margin-right: 8px;
+    padding: 5px 8px;
+    border-radius: 10px;
+    aspect-ratio: auto;
+  }
+  .ptile.is-clone { display: grid; }
+  .ptile__name { font-size: 9.5px; }
 }
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.ptile.is-clone { display: none; }
 
 @media (max-width: 359px) {
   :root { --in-x: 18px; --title: 21px; }
@@ -517,6 +575,11 @@ html.reduced-motion *::after {
   animation-delay: 0ms !important;
   transition-duration: 0.001ms !important;
   transition-delay: 0ms !important;
+}
+@media (max-width: 767px) and (min-height: 381px), (max-width: 749px) {
+  html.reduced-motion .sl--partners .vis { overflow-x: auto; scrollbar-width: none; }
+  html.reduced-motion .partners { animation: none !important; padding-left: var(--in-x); padding-right: var(--in-x); }
+  html.reduced-motion .ptile.is-clone { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
