@@ -121,6 +121,18 @@
     });
   }
 
+  /* double the partner logos for the endless row on mobile (the copies are hidden elsewhere) */
+  var partners = document.querySelector('.partners');
+  if (partners) {
+    Array.prototype.slice.call(partners.children).forEach(function (li) {
+      var c = li.cloneNode(true);
+      c.classList.add('is-clone');
+      c.setAttribute('aria-hidden', 'true');
+      Array.prototype.forEach.call(c.querySelectorAll('img'), function (img) { img.alt = ''; });
+      partners.appendChild(c);
+    });
+  }
+
   /* ------------------------------------------------------------------
      Init
      ------------------------------------------------------------------ */

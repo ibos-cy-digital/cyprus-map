@@ -30,7 +30,7 @@ The banner never scrolls inside the frame: inside an iframe it fills the frame e
 |---|---|---|---|---|
 | Desktop | ≥ 1024 px | **384 px** | 360 px tall, max 1216 px wide | copy left, visual right, 32 px side padding |
 | Tablet | 768–1023 px (also Wix's 751–767 px) | **344 px** | 320 px tall | copy left, smaller visual right, 24 px side padding |
-| Mobile | < 768 px | **424 px** | 400 px tall | copy only (visuals hidden), controls centred at the bottom, 16 px side padding |
+| Mobile | < 768 px | **480 px** | 456 px tall | compact visual at the top, copy below, controls centred at the bottom, 16 px side padding |
 
 - The iframe height is the card plus 8 px above it and 16 px below it, which leaves room for the card's soft shadow.
 - **Width:** the card is never wider than **1216 px** and is centred, so on wide screens it lines up with the page content grid. Below 1280 px it keeps 32 / 24 / 16 px from the frame edges.
@@ -53,11 +53,17 @@ One design, used by default. No URL parameter is needed; an old `?v=…` paramet
   - Arrows: 36 px circles with white chevrons. On hover they turn white with a dark chevron.
   - Dots: the active dot is a 22 px white pill; inactive dots are 6 px, white at 40%.
   - Progress bar: 2 px, white at 75%, on a track of white at 12%.
-- **Right-side visuals** (hidden on mobile):
+- **Right-side visuals:**
   - Glass cards: white at 10%, blur, a fine border.
   - Logos sit in white tiles: radius 12, a soft shadow, and a lift on hover.
   - The licence and payment cards have a blue shield icon box (`#185FA5` on `#E6F1FB`).
   - The award is a round glass medallion with "2025" in Instrument Serif.
+- **Mobile visuals:** one compact row at the top of the card, over the photo.
+  - Licence: the ministry logo in a small white tile.
+  - Partners: the seven logos in small white tiles, in a slow endless row. It pauses on touch; with reduced motion it stands still and can be swiped sideways.
+  - Award: a small "2025" medallion.
+  - Payments: Visa, Mastercard, American Express and PayPal in small white tiles.
+  - Reviews: no visual; the white stars in the eyebrow carry it.
 - **Motion:**
   - Crossfade between slides: 0.8 s.
   - Slow zoom-out on the photo: scale 1.08 → 1 over 7 s.
@@ -71,11 +77,11 @@ Embed URL for Wix: `https://ibos-cy-digital.github.io/cyprus-map/trust-banner/`
 
 Slide 1 shows **`assets/deputy-ministry-logo.png`**: the Deputy Ministry of Tourism crest with "Deputy Ministry of Tourism · Republic of Cyprus", **without** the "Love Cyprus" mark. It is a transparent PNG, 720 × 323 px. It was made from the logo supplied by the owner: cropped before the divider line, the baked-in checkerboard removed, and the white dove and "1960" inside the shield kept.
 
-It shows in a white tile on the licence glass card, at about 205 × 92 px on desktop and 165 × 74 px on tablet (the visual is hidden on mobile). To replace it, overwrite the file with a transparent PNG of a similar shape (about 2.2:1). If the file is ever missing, the slide falls back to a plain text badge ("Deputy Ministry of Tourism · Republic of Cyprus").
+It shows in a white tile on the licence glass card, at about 205 × 92 px on desktop, 165 × 74 px on tablet and 111 × 50 px on mobile. To replace it, overwrite the file with a transparent PNG of a similar shape (about 2.2:1). If the file is ever missing, the slide falls back to a plain text badge ("Deputy Ministry of Tourism · Republic of Cyprus").
 
 ## Partner logos (slide 2)
 
-Seven partners are shown in a 4 + 3 grid (second row centred) of equal white tiles, so each logo keeps its original colours. The tiles fade in one after another when the slide appears and lift on hover. On tablet the tiles are smaller; on mobile the logos are hidden with the other visuals.
+Seven partners are shown in a 4 + 3 grid (second row centred) of equal white tiles, so each logo keeps its original colours. The tiles fade in one after another when the slide appears and lift on hover. On tablet the tiles are smaller. On mobile the logos run in a slow endless row at the top of the card (`js/banner.js` doubles the list for the loop; the copies are hidden from screen readers).
 
 | Tile | File in `assets/partners/` | Status |
 |---|---|---|
