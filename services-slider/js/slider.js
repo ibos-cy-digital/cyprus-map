@@ -1,5 +1,5 @@
 /* =====================================================================
-   WWE Travel CY · "Cyprus, made to measure" · services slider
+   WWE Travel CY · Home page services slider
    The active card sits in the middle; the neighbours step back on
    both sides. Autoplay with a progress fill in the active dot, pause
    on hover / focus / hidden tab / off screen, arrows, dots, a click on
@@ -9,10 +9,8 @@
   'use strict';
 
   var DURATION = 5500;                                    // ms per card
-  /* Early booking badge (cards with class "has-offer"): shown until this
-     moment, Cyprus time, then removed automatically. */
-  var OFFER_END = Date.parse('2026-11-30T23:59:59+02:00');
-
+  var RATIO = 1.5;                                        // desktop card width : height
+  var MAX_W = 480;                                        // desktop card width, px
   var root = document.documentElement;
   var ss = document.getElementById('ss');
   var stage = document.getElementById('stage');
@@ -30,17 +28,6 @@
   var elapsed = 0;
   var last = 0;
   var paused = { hover: false, focus: false, hidden: document.hidden, offscreen: false };
-
-  /* ------------------------------------------------------------------
-     Early booking badge
-     ------------------------------------------------------------------ */
-  if (Date.now() > OFFER_END) {
-    cards.forEach(function (c) {
-      var o = c.querySelector('.card__offer');
-      if (o) o.parentNode.removeChild(o);
-      c.classList.remove('has-offer');
-    });
-  }
 
   /* ------------------------------------------------------------------
      Dots (one per card, with a progress fill in the active one)
@@ -64,19 +51,22 @@
   function measure() {
     var W = stage.clientWidth, H = stage.clientHeight;
     var mobile = getComputedStyle(root).getPropertyValue('--layout').trim() === 'mobile';
-    var cw, s1, s2, x1, x2;
+    var cw, ch, s1, s2, x1, x2;
     if (mobile) {
       cw = Math.min(W * 0.84, 360);
+      ch = Math.min(H, cw * 1.45);
       s1 = 0.9; s2 = 0.8;
       x1 = cw / 2 + s1 * cw / 2 + 12;
       x2 = x1 + s1 * cw / 2 + s2 * cw / 2 + 12;
     } else {
-      cw = Math.min(W * (W < 980 ? 0.46 : 0.42), H * 1.4);
-      s1 = 0.8; s2 = 0.62;
+      /* a landscape card (3 : 2) that never stretches with the frame height */
+      cw = Math.min(W * (W < 980 ? 0.48 : 0.4), MAX_W, H * RATIO);
+      ch = cw / RATIO;
+      s1 = 0.8; s2 = 0.64;
       x2 = W / 2 - s2 * cw / 2;                         // the outer cards end at the stage edge
-      x1 = cw / 2 + (x2 - cw / 2) * 0.4;
+      x1 = cw / 2 + (x2 - cw / 2) * 0.42;
     }
-    geo = { cw: cw, ch: H, s: [1, s1, s2, s2 * 0.85], x: [0, x1, x2, x2 + cw * 0.3] };
+    geo = { cw: cw, ch: ch, s: [1, s1, s2, s2 * 0.85], x: [0, x1, x2, x2 + cw * 0.3] };
   }
 
   function offset(k) {                                    // signed distance from the active card
