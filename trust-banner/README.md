@@ -12,7 +12,7 @@ Published with GitHub Pages at **`https://ibos-cy-digital.github.io/cyprus-map/t
 |---|---|---|---|
 | 1 | Licensed & regulated | "Licensed by the Cyprus Deputy Ministry of Tourism" · Registered Cyprus company · glass card with a blue shield and the official ministry logo (no licence number shown) | Licence details → `/legal-disclaimer` |
 | 2 | Trusted by travel agencies | "Partners who already work with us" · seven partner logos on white tiles | Become a partner → `/become-a-b2b-partner` |
-| 3 | Award-winning | "Best Bespoke Travel Company · Cyprus 2025" · round glass medallion with "2025" in Instrument Serif | Plan your trip → `/tailored-program-package-request` |
+| 3 | Award-winning | "Best Bespoke Travel Company · Cyprus 2025" · round glass medallion with "2025" in Instrument Serif | Read About Our Award → the award article in the WWE Travel CY magazine (`/post/wwe-travel-celebrates-european-travel-award-as-best-bespoke-travel-company-in-cyprus-2025`) |
 | 4 | Rated 5.0 on Google | 5 white stars, two verbatim Google reviews on a glass card (the second is hidden below 900 px) (Yiannis Korfiotis, Katerina Eftychiou) | Read our reviews → Google Maps |
 | 5 | Book with confidence | Secure payments · SSL encrypted · GDPR compliant · glass card with a blue shield, Visa, Mastercard, American Express, PayPal | Browse hotels → `/hotels` |
 
