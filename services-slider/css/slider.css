@@ -1,52 +1,63 @@
 /* =====================================================================
-   WWE Travel CY · "Cyprus, made to measure" · services slider
-   Light section, photo cards. The active card sits in the middle and
-   the neighbours step back on both sides (cover-flow).
-   Iframe heights (see README): desktop 620 · tablet 540 · mobile 660
+   WWE Travel CY · Home page services slider
+   Five photo cards; the active card sits in the middle and the
+   neighbours step back on both sides. Warm background with a faint
+   contour pattern (the same motif as the B2B section).
+   The section heading is set in Wix, above the embed.
+   Iframe heights (see README): desktop 420 · tablet 380 · mobile 520
    ===================================================================== */
 
 :root {
-  /* palette: the trust banner's sea blue, no orange */
-  --sea: 13, 34, 54;                 /* #0D2236 */
   --ink: #1A1A1A;
-  --body: #4A5560;
-  --eyebrow: rgba(26, 26, 26, 0.6);
-  --blue: #185FA5;
-  --blue-bg: #E6F1FB;
+  --shade: 12, 22, 32;               /* deep neutral blue-black for gradients and shadows */
+  --sand-edge: #F3ECE3;
+  --sand-mid: #FAF7F3;
   --white: #FFFFFF;
-  --sand: #EFE9E0;
 
   /* layout */
   --max: 1216px;
-  --pad-x: 32px;
-  --pad-top: 8px;
-  --pad-bottom: 20px;
-  --stage-h: 400px;        /* card height when the page is opened on its own */
-  --title: 34px;
-  --card-title: 26px;
-  --radius: 20px;
-  --layout: desktop;       /* read by slider.js */
+  --pad-x: 18px;
+  --pad-top: 18px;          /* room for the cards' shadows */
+  --pad-bottom: 22px;
+  --stage-h: 340px;         /* stage height when the page is opened on its own */
+  --card-title: 22px;
+  --radius: 18px;
+  --layout: desktop;        /* read by slider.js */
 
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   --move: 0.75s;
 }
 
 /* ---------------------------------------------------------------------
-   Base
+   Base and background
    --------------------------------------------------------------------- */
 *, *::before, *::after { box-sizing: border-box; }
 html {
   color-scheme: light;
   -webkit-text-size-adjust: 100%;
-  background: var(--sand);           /* opened on its own */
+  /* warm sand at the edges, almost white in the middle */
+  background: linear-gradient(90deg, var(--sand-edge) 0%, var(--sand-mid) 50%, var(--sand-edge) 100%);
 }
-html.is-embedded { background: transparent; }   /* in Wix: the section shows through */
 body {
+  position: relative;
   margin: 0;
+  min-height: 100vh;
   background: transparent;
   font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
   color: var(--ink);
   -webkit-font-smoothing: antialiased;
+}
+/* faint contour lines near the corners, gone towards the middle */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: url("../assets/contours.svg") center / cover no-repeat;
+  opacity: 0.35;
+  -webkit-mask-image: radial-gradient(ellipse 62% 70% at 50% 50%, transparent 45%, #000 100%);
+  mask-image: radial-gradient(ellipse 62% 70% at 50% 50%, transparent 45%, #000 100%);
 }
 html.is-embedded,
 html.is-embedded body { height: 100%; overflow: hidden; }
@@ -66,37 +77,11 @@ button { font: inherit; color: inherit; }
 }
 html.is-embedded .ss { height: 100vh; }
 
-.ss__head { flex: none; max-width: 640px; }
-.ss__eyebrow {
-  margin: 0 0 10px;
-  font-size: 11px;
-  font-weight: 600;
-  line-height: 16px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--eyebrow);
-}
-.ss__title {
-  margin: 0;
-  font-size: var(--title);
-  font-weight: 600;
-  line-height: 1.15;
-  letter-spacing: -0.02em;
-  color: var(--ink);
-}
-.ss__intro {
-  margin: 10px 0 0;
-  font-size: 15px;
-  line-height: 1.5;
-  color: var(--body);
-}
-
 /* the stage holds the cards; in Wix it takes whatever height is left */
 .ss__stage {
   position: relative;
   flex: none;
   height: var(--stage-h);
-  margin-top: 32px;
 }
 html.is-embedded .ss__stage { flex: 1 1 auto; height: auto; min-height: 0; }
 
@@ -110,16 +95,24 @@ html.is-embedded .ss__stage { flex: 1 1 auto; height: auto; min-height: 0; }
   margin: 0;
   overflow: hidden;
   border-radius: var(--radius);
-  background: rgb(var(--sea));
-  box-shadow: 0 24px 48px -28px rgba(var(--sea), 0.55), 0 2px 8px -4px rgba(var(--sea), 0.25);
+  background: #DCD6CE;
   cursor: pointer;
-  transition: transform var(--move) var(--ease), opacity 0.5s ease, box-shadow var(--move) ease;
+  /* soft, natural depth */
+  box-shadow:
+    0 1px 2px rgba(var(--shade), 0.06),
+    0 8px 18px -10px rgba(var(--shade), 0.22),
+    0 18px 36px -24px rgba(var(--shade), 0.3);
+  transition: transform var(--move) var(--ease), box-shadow var(--move) ease;
   isolation: isolate;
   -webkit-tap-highlight-color: transparent;
 }
-.card.is-active { cursor: default; box-shadow: 0 30px 60px -28px rgba(var(--sea), 0.65), 0 2px 8px -4px rgba(var(--sea), 0.25); }
-.card.is-far { opacity: 0.92; }
-.card.is-out { opacity: 0; pointer-events: none; }
+.card.is-active {
+  cursor: default;
+  box-shadow:
+    0 1px 3px rgba(var(--shade), 0.08),
+    0 14px 28px -12px rgba(var(--shade), 0.28),
+    0 34px 60px -30px rgba(var(--shade), 0.45);
+}
 .is-placing .card, .is-placing .card * { transition: none !important; }
 
 .card__photo {
@@ -130,35 +123,34 @@ html.is-embedded .ss__stage { flex: 1 1 auto; height: auto; min-height: 0; }
   height: 100%;
   object-fit: cover;
   object-position: var(--focus, 50% 50%);
-  transform: scale(1.08);
+  transform: scale(1.05);
   transition: transform 7s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
-.card.is-active .card__photo { transform: scale(1); }   /* slow zoom-out while it is in the middle */
+.card.is-active .card__photo { transform: scale(1); }   /* slow zoom-out, ending at full sharpness */
 
-/* sea blue gradient from the bottom, so the copy always reads */
+/* dark only in the lower part, behind the copy */
 .card::before {
   content: "";
   position: absolute;
   inset: 0;
   z-index: -1;
   background: linear-gradient(180deg,
-    rgba(var(--sea), 0.18) 0%,
-    rgba(var(--sea), 0) 26%,
-    rgba(var(--sea), 0.32) 52%,
-    rgba(var(--sea), 0.9) 100%);
+    rgba(var(--shade), 0) 42%,
+    rgba(var(--shade), 0.38) 66%,
+    rgba(var(--shade), 0.78) 100%);
 }
-/* side cards step back */
+/* side cards step back a little; the photos stay clear */
 .card::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(var(--sea), 0);
+  background: rgba(var(--shade), 0);
   pointer-events: none;
   transition: background-color var(--move) ease;
 }
-.card.is-near::after { background: rgba(var(--sea), 0.3); }
-.card.is-far::after { background: rgba(var(--sea), 0.48); }
-.card:not(.is-active):hover::after { background: rgba(var(--sea), 0.18); }
+.card.is-near::after { background: rgba(var(--shade), 0.12); }
+.card.is-far::after { background: rgba(var(--shade), 0.22); }
+.card:not(.is-active):hover::after { background: rgba(var(--shade), 0.04); }
 
 .card__body {
   position: absolute;
@@ -167,60 +159,34 @@ html.is-embedded .ss__stage { flex: 1 1 auto; height: auto; min-height: 0; }
   flex-direction: column;
   justify-content: flex-end;
   align-items: flex-start;
-  padding: 24px 26px 26px;
+  padding: 20px 22px 22px;
   color: var(--white);
 }
 .card__tag {
   position: absolute;
-  top: 18px;
-  left: 18px;
-  max-width: calc(100% - 36px);
+  top: 14px;
+  left: 14px;
+  max-width: calc(100% - 28px);
   margin: 0;
-  padding: 6px 11px;
+  padding: 5px 10px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
   border-radius: 999px;
   font-size: 11px;
   font-weight: 600;
-  line-height: 1.2;
-  letter-spacing: 0.02em;
+  line-height: 1.25;
+  letter-spacing: 0.01em;
   color: var(--white);
-  background: rgba(255, 255, 255, 0.14);
-  border: 1px solid rgba(255, 255, 255, 0.24);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
+  background: rgba(var(--shade), 0.42);
 }
-.card__offer {
-  display: grid;
-  gap: 1px;
-  margin: 0 0 12px;
-  padding: 7px 12px 7px 26px;
-  position: relative;
-  border-radius: 10px;
-  background: var(--white);
-  color: var(--ink);
-  box-shadow: 0 8px 18px -10px rgba(var(--sea), 0.7);
-}
-.card__offer::before {
-  content: "";
-  position: absolute;
-  left: 11px;
-  top: 12px;
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--blue);
-  box-shadow: 0 0 0 3px var(--blue-bg);
-}
-.card__offer b { font-size: 12px; font-weight: 700; line-height: 1.3; }
-.card__offer span { font-size: 11px; line-height: 1.3; color: var(--blue); font-weight: 500; }
 .card__title {
   margin: 0;
   font-size: var(--card-title);
   font-weight: 600;
-  line-height: 1.15;
-  letter-spacing: -0.02em;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  text-shadow: 0 1px 12px rgba(var(--shade), 0.35);
   text-wrap: balance;
 }
 .card__line,
@@ -228,30 +194,31 @@ html.is-embedded .ss__stage { flex: 1 1 auto; height: auto; min-height: 0; }
   transition: opacity 0.45s ease 0.25s, transform 0.45s var(--ease) 0.25s;
 }
 .card__line {
-  max-width: 420px;
-  margin: 8px 0 0;
-  font-size: 14px;
-  line-height: 1.5;
-  color: rgba(255, 255, 255, 0.84);
+  max-width: 400px;
+  margin: 6px 0 0;
+  font-size: 13.5px;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 0 1px 10px rgba(var(--shade), 0.35);
 }
 .card__btn {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  height: 40px;
-  margin-top: 16px;
-  padding: 0 16px;
+  height: 38px;
+  margin-top: 14px;
+  padding: 0 15px;
   border-radius: 8px;
   background: var(--white);
   color: var(--ink);
-  font-size: 14px;
+  font-size: 13.5px;
   font-weight: 600;
   text-decoration: none;
   white-space: nowrap;
-  box-shadow: 0 6px 16px -8px rgba(var(--sea), 0.6);
+  box-shadow: 0 6px 14px -8px rgba(var(--shade), 0.5);
 }
 .card__btn span:last-child { transition: transform 0.25s var(--ease); }
-.card__btn:hover { background: #F1F3F5; }
+.card__btn:hover { background: #F3F1EE; }
 .card__btn:hover span:last-child { transform: translateX(3px); }
 .card__btn:focus-visible { outline: 2px solid var(--white); outline-offset: 3px; }
 
@@ -266,38 +233,39 @@ html.is-embedded .ss__stage { flex: 1 1 auto; height: auto; min-height: 0; }
 }
 
 /* ---------------------------------------------------------------------
-   Controls: arrows + dots (the active dot fills while the card plays)
+   Controls: neutral arrows + dots (the active dot fills while it plays)
    --------------------------------------------------------------------- */
 .ss__ctrl {
   flex: none;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 14px;
-  margin-top: 26px;
+  gap: 12px;
+  margin-top: 18px;
 }
 .arrow {
   display: grid;
   place-items: center;
-  width: 40px;
-  height: 40px;
+  width: 38px;
+  height: 38px;
   padding: 0;
-  border: 1px solid rgba(var(--sea), 0.18);
+  border: 1px solid rgba(26, 26, 26, 0.12);
   border-radius: 50%;
   background: var(--white);
-  color: rgb(var(--sea));
+  color: var(--ink);
   cursor: pointer;
+  box-shadow: 0 2px 6px -3px rgba(var(--shade), 0.2);
   transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
-.arrow svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-.arrow:hover { background: rgb(var(--sea)); border-color: rgb(var(--sea)); color: var(--white); }
-.arrow:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+.arrow svg { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.arrow:hover { background: var(--ink); border-color: var(--ink); color: var(--white); }
+.arrow:focus-visible { outline: 2px solid rgba(26, 26, 26, 0.45); outline-offset: 2px; }
 
 .dots { display: flex; align-items: center; }
 .dot {
   display: grid;
   place-items: center;
-  height: 28px;
+  height: 26px;
   padding: 0 4px;
   border: 0;
   background: none;
@@ -306,54 +274,58 @@ html.is-embedded .ss__stage { flex: 1 1 auto; height: auto; min-height: 0; }
 .dot::before {
   content: "";
   grid-area: 1 / 1;
-  width: 7px;
-  height: 7px;
+  width: 6px;
+  height: 6px;
   border-radius: 999px;
-  background: rgba(var(--sea), 0.22);
+  background: rgba(26, 26, 26, 0.22);
   transition: width 0.45s var(--ease), background-color 0.3s ease;
 }
 .dot i {
   grid-area: 1 / 1;
   justify-self: start;
   display: none;
-  width: 28px;
-  height: 7px;
+  width: 22px;
+  height: 6px;
   border-radius: 999px;
-  background: rgb(var(--sea));
+  background: var(--ink);
   transform: scaleX(0);
   transform-origin: left center;
 }
-.dot:hover::before { background: rgba(var(--sea), 0.45); }
-.dot.is-active::before { width: 28px; background: rgba(var(--sea), 0.2); }
+.dot:hover::before { background: rgba(26, 26, 26, 0.4); }
+.dot.is-active::before { width: 22px; background: rgba(26, 26, 26, 0.16); }
 .dot.is-active i { display: block; }
 html.reduced-motion .dot.is-active i { transform: none !important; }
-.dot:focus-visible { outline: 2px solid var(--blue); outline-offset: -2px; border-radius: 999px; }
+.dot:focus-visible { outline: 2px solid rgba(26, 26, 26, 0.45); outline-offset: -2px; border-radius: 999px; }
 
 /* ---------------------------------------------------------------------
    Breakpoints
    --------------------------------------------------------------------- */
 @media (max-width: 1023px) {
-  :root { --pad-x: 24px; --stage-h: 340px; --title: 28px; --card-title: 22px; }
-  .ss__stage { margin-top: 24px; }
-  .ss__ctrl { margin-top: 22px; }
-  .card__body { padding: 20px 20px 20px; }
-  .card__line { font-size: 13.5px; }
+  :root { --pad-x: 24px; --stage-h: 280px; --card-title: 19px; }
+  .card__body { padding: 16px 18px 18px; }
+  .card__line { font-size: 12.5px; }
+  .card__btn { height: 34px; margin-top: 10px; font-size: 12.5px; padding: 0 13px; }
 }
 
 /* mobile (Wix's tablet frame, 750–767 px wide, keeps the tablet layout while it is short) */
-@media (max-width: 767px) and (min-height: 601px), (max-width: 749px) {
-  :root { --pad-x: 16px; --stage-h: 420px; --title: 24px; --card-title: 22px; --layout: mobile; }
-  .ss__intro { font-size: 14px; }
-  .ss__stage { margin-top: 22px; }
-  .ss__ctrl { margin-top: 20px; gap: 10px; }
+@media (max-width: 767px) and (min-height: 451px), (max-width: 749px) {
+  :root { --pad-x: 16px; --pad-top: 14px; --stage-h: 420px; --card-title: 22px; --layout: mobile; }
+  .ss__ctrl { margin-top: 16px; gap: 10px; }
   .card__body { padding: 18px 18px 20px; }
-  .card__tag { top: 14px; left: 14px; }
+  .card__line { font-size: 13.5px; }
+  .card__btn { height: 38px; margin-top: 14px; font-size: 13.5px; padding: 0 15px; }
+  body::before { opacity: 0.28; background-size: 260% auto; }
+}
+
+/* small phones: the longest button label is shortened ("Explore Tours") */
+@media (max-width: 399px) {
+  .card__btn-more { display: none; }
 }
 
 @media (max-width: 359px) {
   :root { --card-title: 20px; }
   .card__line { font-size: 13px; }
-  .card__btn { font-size: 13px; padding: 0 14px; }
+  .card__btn { font-size: 12.5px; padding: 0 12px; }
 }
 
 /* ---------------------------------------------------------------------
