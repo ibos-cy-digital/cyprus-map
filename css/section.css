@@ -1,12 +1,13 @@
 /* =====================================================================
    WWE Travel CY · "Kipar koji poznajemo" · embeddable editorial section
-   Brand: Inter · accent #E8593C · ink #1A1A1A · body #555 · meta #888
+   Brand: Inter · accent #185FA5 (sea blue) · deep #0D2236 · ink #1A1A1A · body #555 · meta #888
    Frame heights (see README): desktop 780 · tablet 1240 · mobile 1540
    ===================================================================== */
 
 :root {
-  --accent: #E8593C;
-  --accent-hover: #D44E33;
+  --accent: #185FA5;      /* sea blue, as on the rest of the Home page */
+  --accent-hover: #134E88;
+  --deep: #0D2236;        /* deep sea blue: the button */
   --ink: #1A1A1A;
   --body: #555555;
   --meta: #888888;
@@ -14,8 +15,8 @@
   --card: #FFFFFF;
   --line: #EBEBEB;
   --line-2: #E0DDD8;
-  --warm-1: #F1DCC9;
-  --warm-2: #E9C9B2;
+  --warm-1: #E3EEF8;     /* light sea tints (names kept) */
+  --warm-2: #CFE0F0;
 
   --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-power3: cubic-bezier(0.215, 0.61, 0.355, 1);
@@ -208,7 +209,7 @@ html.is-embedded .wwe { height: 100vh; }
 .sea { transform-box: fill-box; transform-origin: center; }
 .rings__base { fill: var(--warm-2); opacity: 0.75; }
 .rings__shimmer { opacity: 0.9; }
-.island__fill { fill: #FFFDFA; }
+.island__fill { fill: #FFFFFF; }
 .island__dots { opacity: 0.9; }
 .island__line {
   fill: none;
@@ -250,7 +251,7 @@ html.is-embedded .wwe { height: 100vh; }
   fill: #fff;
   stroke: var(--line-2);
   stroke-width: 1;
-  filter: drop-shadow(0 6px 10px rgba(80, 45, 20, 0.12));
+  filter: drop-shadow(0 6px 10px rgba(13, 34, 54, 0.12));
 }
 .route__label text {
   font-size: 12px;
@@ -310,7 +311,7 @@ html.is-embedded .wwe { height: 100vh; }
   stroke: var(--accent);
   stroke-width: 1.6;
   transition: fill 0.5s var(--ease-power3);
-  filter: drop-shadow(0 4px 8px rgba(80, 45, 20, 0.14));
+  filter: drop-shadow(0 4px 8px rgba(13, 34, 54, 0.14));
 }
 .mk__num {
   font-size: 12px;
@@ -474,12 +475,12 @@ html:not(.reduced-motion) .map.st-done .rings { animation: ringsBreathe 7s ease-
   color: var(--accent);
 }
 .hint__icon::before {
-  /* soft coral disc so the icon reads at a glance */
+  /* soft blue disc so the icon reads at a glance */
   content: '';
   position: absolute;
   inset: 0;
   border-radius: 50%;
-  background: rgba(232, 89, 60, 0.11);
+  background: rgba(24, 95, 165, 0.11);
 }
 .hint__icon svg {
   position: relative;
@@ -489,7 +490,7 @@ html:not(.reduced-motion) .map.st-done .rings { animation: ringsBreathe 7s ease-
   padding: 3px;
   fill: currentColor;
   transform-origin: 50% 80%;
-  filter: drop-shadow(0 2px 3px rgba(232, 89, 60, 0.28));
+  filter: drop-shadow(0 2px 3px rgba(24, 95, 165, 0.28));
 }
 .hint__ring {
   /* centred on the fingertip */
@@ -544,7 +545,7 @@ html.js:not(.reduced-motion) .map:not(.st-done) .hint { opacity: 0; }
   line-height: 0.82;
   letter-spacing: -7px;
   color: transparent;
-  -webkit-text-stroke: 1.2px rgba(232, 89, 60, 0.32);
+  -webkit-text-stroke: 1.2px rgba(24, 95, 165, 0.32);
   font-variant-numeric: tabular-nums;
   transform-origin: left center;
   user-select: none;
@@ -607,10 +608,10 @@ html.js:not(.reduced-motion) .map:not(.st-done) .hint { opacity: 0; }
 /* region tones (overridden per region from data.js) */
 .cv,
 .ph {
-  --t1: #F0CDB4;
-  --t2: #E7A98C;
-  --t3: #D9785C;
-  --t4: #F2BFA0;
+  --t1: #DCEBF7;
+  --t2: #9CC3E6;
+  --t3: #185FA5;
+  --t4: #BFDDF2;
 }
 
 .cover {
@@ -619,10 +620,10 @@ html.js:not(.reduced-motion) .map:not(.st-done) .hint { opacity: 0; }
   z-index: 1;
   overflow: hidden;
   border-radius: 4px;
-  background: #EADBCD;
+  background: #D9E6F2;
   box-shadow:
     0 1px 2px rgba(26, 26, 26, 0.05),
-    0 34px 60px -30px rgba(80, 45, 20, 0.42);
+    0 34px 60px -30px rgba(13, 34, 54, 0.42);
 }
 .cv {
   position: absolute;
@@ -692,7 +693,7 @@ html:not(.reduced-motion) .cv.is-current { animation: drift 18s ease-in-out infi
   border-radius: 2px;
   box-shadow:
     0 1px 2px rgba(26, 26, 26, 0.08),
-    0 26px 46px -18px rgba(80, 45, 20, 0.40);
+    0 26px 46px -18px rgba(13, 34, 54, 0.40);
   will-change: transform;
 }
 .postcard--a { bottom: 0; right: -6%; transform: rotate(5deg); }
@@ -752,8 +753,8 @@ html:not(.reduced-motion) .cv.is-current { animation: drift 18s ease-in-out infi
   height: 100%;
   object-fit: cover;
   opacity: 0;
-  /* one warm treatment for every photo */
-  filter: sepia(0.16) saturate(1.08) contrast(1.03) brightness(1.02);
+  /* one light, natural treatment for every photo */
+  filter: saturate(1.05) contrast(1.02);
   transition: opacity 0.9s var(--ease-power3);
 }
 .ph.is-loaded img { opacity: 1; }
@@ -763,7 +764,7 @@ html:not(.reduced-motion) .cv.is-current { animation: drift 18s ease-in-out infi
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: linear-gradient(180deg, rgba(232, 89, 60, 0.07) 0%, rgba(120, 60, 30, 0.10) 100%);
+  background: linear-gradient(180deg, rgba(24, 95, 165, 0.04) 0%, rgba(13, 34, 54, 0.08) 100%);
   mix-blend-mode: multiply;
 }
 
@@ -866,13 +867,13 @@ html:not(.reduced-motion) .cv.is-current { animation: drift 18s ease-in-out infi
   gap: 10px;
   padding: 12px 20px;
   border-radius: 8px;
-  background: var(--accent);
+  background: var(--deep);
   color: #fff;
   font-size: 14px;
   font-weight: 500;
   line-height: 1;
   text-decoration: none;
-  box-shadow: 0 0 0 0 rgba(232, 89, 60, 0), 0 6px 16px -10px rgba(232, 89, 60, 0.6);
+  box-shadow: 0 0 0 0 rgba(24, 95, 165, 0), 0 6px 16px -10px rgba(13, 34, 54, 0.6);
   transition: background-color 0.35s var(--ease-power3), box-shadow 0.6s var(--ease-expo), transform 0.6s var(--ease-expo);
 }
 .btn__arrow {
@@ -880,8 +881,8 @@ html:not(.reduced-motion) .cv.is-current { animation: drift 18s ease-in-out infi
   transition: transform 0.6s var(--ease-expo);
 }
 .btn:hover {
-  background: var(--accent-hover);
-  box-shadow: 0 0 0 6px rgba(232, 89, 60, 0.10), 0 14px 34px -8px rgba(232, 89, 60, 0.55);
+  background: var(--accent);
+  box-shadow: 0 0 0 6px rgba(24, 95, 165, 0.10), 0 14px 34px -8px rgba(13, 34, 54, 0.45);
 }
 .btn:hover .btn__arrow { transform: translateX(5px); }
 .btn:active { transform: translateY(1px); }

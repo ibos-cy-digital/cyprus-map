@@ -13,8 +13,8 @@
      the drawing is 1000 × 624). Only change it to move a marker.
    - Photos: see IMAGES below and README.md → "Photos". Their captions
      are in js/i18n.js (regions.<id>.captions, in the same order).
-   - "tone" colours the region's cover card (warm gradient behind the
-     two postcard photos): [light, middle, deep, hint].
+   - "tone" colours the region's cover card (gradient behind the
+     two postcard photos): [light, middle, deep, hint], in sea blues.
    ===================================================================== */
 
 (function () {
@@ -63,7 +63,7 @@
       coords: '34°55′N · 33°38′E',
       transfer: [ { code: 'LCA', min: 15 }, { code: 'PFO', min: 105 } ],
       route: 'LCA',
-      tone: [ '#F7D5BF', '#F09A79', '#E8593C', '#F3B48F' ],      // coral
+      tone: [ '#DCEBF7', '#9CC3E6', '#185FA5', '#BFDDF2' ],      // sea blue
       photos: [
         // Unsplash: people on the beach at Finikoudes, Larnaka
         { src: photo('PDoWMD5cy9I') },
@@ -77,7 +77,7 @@
       coords: '34°59′N · 34°00′E',
       transfer: [ { code: 'LCA', min: 40 }, { code: 'PFO', min: 135 } ],
       route: 'LCA',
-      tone: [ '#F8D6BE', '#EE9A7C', '#D9694C', '#7CC3BD' ],      // sunset coral, turquoise hint
+      tone: [ '#DDF0F2', '#8CCBD4', '#1F7A8C', '#9ED6D9' ],      // turquoise
       photos: [
         // Unsplash (Secret Travel Guide): aerial view of Nissi beach, Ayia Napa
         { src: photo('fmZTiJ64QCw') },
@@ -91,7 +91,7 @@
       coords: '35°10′N · 33°22′E',
       transfer: [ { code: 'LCA', min: 45 }, { code: 'PFO', min: 105 } ],
       route: 'LCA',
-      tone: [ '#F3E1C8', '#DDAE84', '#B8693F', '#E9C9A0' ],      // warm sand, terracotta
+      tone: [ '#E4E9F1', '#A9B6CB', '#3E5675', '#C9D3E3' ],      // slate blue
       photos: [
         // Owner's photos
         { src: photo('assets/photos/nikozija-venecijanske-zidine.jpg') },
@@ -104,7 +104,7 @@
       coords: '34°41′N · 33°02′E',
       transfer: [ { code: 'LCA', min: 50 }, { code: 'PFO', min: 50 } ],
       route: 'PFO',
-      tone: [ '#F6CFC4', '#E3837A', '#C24E5A', '#EFA79A' ],      // deep coral to rose
+      tone: [ '#DCE5F5', '#8FA8D6', '#2B4C8C', '#B9C9E8' ],      // indigo
       photos: [
         // Unsplash: Limassol seafront, town next to the water
         { src: photo('JbU8a2dpw3s') },
@@ -118,7 +118,7 @@
       coords: '34°46′N · 32°25′E',
       transfer: [ { code: 'PFO', min: 20 }, { code: 'LCA', min: 100 } ],
       route: 'PFO',
-      tone: [ '#F0CDB4', '#E7A98C', '#D9785C', '#F2BFA0' ],      // coral (original)
+      tone: [ '#D9EEF5', '#86BFD6', '#1B6A8F', '#B4DCEB' ],      // open sea
       photos: [
         // Unsplash (Kamil Molendys): beach and sea at Petra tou Romiou, Paphos district
         { src: photo('sFqG1PvlsL8') },
