@@ -92,6 +92,7 @@
     var w = stage.clientWidth, cw = cards[0].offsetWidth;
     geo.rx = Math.max(110, Math.min(250, (w - cw * 0.74) / 2 - 6));
     geo.rz = 170;
+    geo.lift = cards[0].offsetHeight * 0.3;
   }
   function norm(a) { a = ((a % 360) + 360) % 360; return a > 180 ? a - 360 : a; }
   function place() {
@@ -102,7 +103,7 @@
       var x = Math.sin(t) * geo.rx;
       var z = (depth - 1) * geo.rz;
       var s = 0.58 + 0.42 * Math.pow(near, 1.3);
-      var y = (1 - near) * -14;                        // cards behind sit a little higher
+      var y = (1 - near) * -geo.lift;                  // cards behind sit higher, inside the panel
       c.style.transform = 'translate3d(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px,' + z.toFixed(1) + 'px) rotateY(' + (-Math.sin(t) * 24).toFixed(2) + 'deg) scale(' + s.toFixed(3) + ')';
       c.style.zIndex = String(Math.round(near * 20));
       c.style.opacity = (0.25 + 0.75 * Math.min(1, near * 1.25)).toFixed(3);

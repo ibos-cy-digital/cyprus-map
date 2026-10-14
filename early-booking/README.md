@@ -1,6 +1,6 @@
 # WWE Travel CY · Early booking 2027
 
-A compact promotional section for the **English Home page** (about **350 px** tall on desktop), embedded with Wix **Embed a site** (an iframe).
+A compact promotional section for the **English Home page** (**380 px** tall on desktop), embedded with Wix **Embed a site** (an iframe). The photo sits in a rounded panel (radius 24, soft shadow) and the offer card in front reaches about 23% past the panel's bottom edge.
 
 Published with GitHub Pages at **`https://ibos-cy-digital.github.io/cyprus-map/early-booking/`** once merged.
 
@@ -10,7 +10,7 @@ Published with GitHub Pages at **`https://ibos-cy-digital.github.io/cyprus-map/e
 - Eyebrow "Early booking · Cyprus 2027".
 - Headline "Cyprus 2027 / rates *are open.*" in Instrument Serif, 30 px.
 - Button "Request 2027 offers" → inquiry form.
-- Three points: Licensed Cyprus Company · Flexible Booking Conditions · For Groups & Agencies.
+- Three points: Early Booking Advantage · Flexible Booking Conditions · For Groups & Agencies.
 - Small print: "Discounts on request for new 2027 bookings confirmed by the deadline. Conditions apply."
 
 **Right: countdown and carousel**
@@ -49,19 +49,20 @@ The form is `https://www.wwe-cy.com/tailored-program-package-request`. The secon
 
 | Wix breakpoint | Frame width | Iframe height | Layout |
 |---|---|---|---|
-| Desktop | ≥ 1024 px | **350 px** | two columns |
-| Tablet | 768–1023 px (also Wix's 751–767 px) | **340 px** | two columns, smaller cards (206 × 238), arrows only below 900 px |
-| Mobile | < 768 px | **800 px** | stacked: promotion, countdown, then the carousel |
+| Desktop | ≥ 1024 px | **380 px** | two columns; the three points on one row from 1280 px |
+| Tablet | 768–1023 px (also Wix's 751–767 px) | **360 px** | two columns, smaller cards (206 × 238), arrows only below 900 px |
+| Mobile | < 768 px | **810 px** | stacked: promotion, countdown, then the carousel |
 
-- **Width:** the section fills the iframe with **no side padding of its own**. Set the horizontal padding in Wix Studio. To add padding inside the embed instead, use `?pad=24` in the URL.
-- **Edges:** the photo fades in from the section above and out into the section below, both white by default. Match other section colours with `?top=f8f7f4&bottom=ffffff` (hex without `#`).
+- **Fit:** inside the iframe the section fills the frame height exactly, so a few pixels more or less never leave a gap. On mobile any extra height is empty page below.
+- **Width:** the panel keeps **16 px** from the frame's left and right edges (12 px on tablet and mobile), so its side shadow shows. Set the page padding in Wix Studio; to add more inside the embed, use `?pad=24` in the URL.
+- **Background:** inside the iframe everything around the panel is transparent, so the page colour (white) shows. The panel has a soft white light at its top and bottom edges.
+- **Navigation:** the arrows and progress bars sit under the panel, on the page, at the bottom right (centred under the card on mobile).
 
 ## Photos and fonts
 
 - **`assets/photos/`:**
   - `background.webp`: the base photo, Limassol at dusk.
-  - `hotels.webp`, `tours.webp`, `groups.webp`, `weddings.webp`: one per offer, used both on the card and as the background while that card is open. They are 1430–1920 px wide.
-  - `groups.webp` is cropped so the "for sale" sign on the building is out of frame.
+  - `hotels.webp` (pool in a Cyprus resort), `tours.webp` (pirate-ship cruise), `groups.webp` (a group at a water park), `weddings.webp` (beach ceremony): one per offer, used both on the card and as the background while that card is open. They are 1500–1920 px wide.
   - Which part of a photo shows on its card is set with `--fx` (0 left … 1 right) on the card in `index.html`.
 - **`assets/fonts/`:** Inter and Instrument Serif, hosted with the section (SIL Open Font Licence, see the `OFL-*.txt` files).
 
