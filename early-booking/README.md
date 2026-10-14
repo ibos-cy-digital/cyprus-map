@@ -1,65 +1,80 @@
 # WWE Travel CY · Early booking 2027
 
-The early booking section for the **English Home page**, embedded with Wix **Embed a site** (an iframe), as the last commercial section of the page.
+A compact promotional section for the **English Home page** (about **350 px** tall on desktop), embedded with Wix **Embed a site** (an iframe).
 
 Published with GitHub Pages at **`https://ibos-cy-digital.github.io/cyprus-map/early-booking/`** once merged.
 
-## What it shows
+## Layout
 
-- **Headline:** "Cyprus 2027 / rates *are open.*" in Instrument Serif, with a short line and a white button "Request a 2027 offer" (inquiry form).
-- **Trust points:** Licensed Cyprus company · Best Bespoke Travel · 2025 · For travellers, groups and agencies.
-- **Glass countdown** (days, hours, minutes, seconds) to **30 November 2026, 23:59 Cyprus time**, with flip digits.
-- **Four offers:**
+**Left: the promotion**
+- Eyebrow "Early booking · Cyprus 2027".
+- Headline "Cyprus 2027 / rates *are open.*" in Instrument Serif, 30 px.
+- Button "Request 2027 offers" → inquiry form.
+- Three points: Licensed Cyprus Company · Flexible Booking Conditions · For Groups & Agencies.
+- Small print: "Discounts on request for new 2027 bookings confirmed by the deadline. Conditions apply."
 
-| Card | Discount | Button → link |
-|---|---|---|
-| Hotels & Stays | Up to 20% off | View hotel offers → `/cyprus-hotels` |
-| Tours & Experiences | 10% off | Explore tours → `/tours-excursions` |
-| Group Programmes | 10% off | View group offers → `/tailored-program-package-request` |
-| Weddings & Special Events | 10% off | Plan your event → `/tailored-program-package-request` |
+**Right: countdown and carousel**
+- A slim glass countdown (days, hours, minutes, seconds, with flip digits) to **30 November 2026, 23:59 Cyprus time**, with the deadline line next to it.
+- A 3D orbit of four concave offer cards (236 × 260 px on desktop):
 
-- **Small print:** "Discounts apply to new 2027 bookings confirmed by the deadline. Conditions apply."
+| Card | Discount | Main button | Second link |
+|---|---|---|---|
+| Hotels & Stays | Up to 20% off | Explore Hotels → `/cyprus-hotels` | Request 2027 Offer → form |
+| Tours & Experiences | 10% off | Explore Tours → `/tours-excursions` | Request 2027 Offer → form |
+| Group Programmes | 10% off | Explore Programmes → `/tours-excursions` | Request 2027 Offer → form |
+| Weddings & Special Events | 10% off | Request 2027 Offer → form | (none) |
 
-**After the deadline** the section changes by itself: the countdown, the discounts and the small print disappear, the eyebrow reads "Cyprus 2027 season", and the line under the countdown reads "Early booking for 2027 has ended. Ask us for current 2027 rates." The date is `DEADLINE` at the top of `js/early-booking.js`.
+The form is `https://www.wwe-cy.com/tailored-program-package-request`. The second link is there because the discounts are given on request, not automatically on the listing pages.
 
-## Motion
+## The sequence
 
-- **Entrance:** when the section scrolls into view, the headline lines rise in turn, the photo settles from a slow zoom, and the four cards are dealt in one after another.
-- **Desktop, cards:** the card under the pointer tilts in 3D towards it, lifts, and catches a soft light reflection. Its photo, icon and discount move in depth (parallax), and the other three step back slightly.
-- **Desktop, background:** the photo drifts gently with the pointer.
-- **Countdown:** each changing digit flips.
-- **Tablet and mobile:** the cards become a swipe deck with dots. On mobile the card in the middle is in focus and the neighbours are smaller and softer.
-- **Reduced motion:** with `prefers-reduced-motion`, nothing moves; the countdown still counts.
+1. **Base:** the section's own photo, with no card in front. Lasts 2.8 s.
+2. **Arrival:** the orbit turns and the first card comes to the front.
+3. **Reveal:** the card opens (description and buttons) and its photo fades into the section background, while the headline and countdown stay readable. Lasts 6.5 s.
+4. **Next offer:** the card closes, the orbit turns, and the background changes to the next photo.
+5. **Return to base:** after the fourth offer, the base photo comes back, there is a pause, and the sequence repeats.
+
+**Control:**
+- **Navigation:** arrows, a click on a side card, swipe on touch screens, and ←/→ keys.
+- **Progress:** four small bars show which offer is playing.
+- **Pausing:** autoplay pauses on hover, while focus is inside, when the tab is hidden and when the section is off screen. After the visitor uses the controls, it waits 9 s before continuing.
+- **Reduced motion:** with `prefers-reduced-motion`, the first offer is shown open and nothing moves by itself.
+- **Timings:** set at the top of `js/early-booking.js` (`BASE_HOLD`, `CARD_HOLD`, `TURN`, `RESUME`).
+
+**The concave cards:** each card's photo is split into three vertical slices, and the outer two turn slightly towards the viewer. Light and shade on the slices make the curve read. The copy sits on a flat plane just in front of the photo.
+
+**After the deadline** the countdown, the discounts and the small print disappear, the eyebrow reads "Cyprus 2027 season", and the deadline line reads "Early booking for 2027 has ended. Ask us for current 2027 rates."
 
 ## Iframe heights (set these in Wix)
 
-Set the Embed element to **100% width (stretched)** and remove the Wix section's padding.
+| Wix breakpoint | Frame width | Iframe height | Layout |
+|---|---|---|---|
+| Desktop | ≥ 1024 px | **350 px** | two columns |
+| Tablet | 768–1023 px (also Wix's 751–767 px) | **340 px** | two columns, smaller cards (206 × 238), arrows only below 900 px |
+| Mobile | < 768 px | **800 px** | stacked: promotion, countdown, then the carousel |
 
-| Wix breakpoint | Frame width | Iframe height |
-|---|---|---|
-| Desktop | ≥ 1024 px | **1000 px** |
-| Tablet | 768–1023 px (also Wix's 751–767 px) | **1110 px** |
-| Mobile | < 768 px | **1180 px** |
-
-The section's own height is 947–988 px on desktop, 1086–1105 px on tablet and 1105–1174 px on mobile; any extra frame height is plain page colour below it.
-
-**Edges:** the photo fades in from the section above and out into the section below. Both edge colours are white by default. To match other section colours, add them to the embed URL without `#`, for example `…/early-booking/?top=f8f7f4&bottom=ffffff`.
+- **Width:** the section fills the iframe with **no side padding of its own**. Set the horizontal padding in Wix Studio. To add padding inside the embed instead, use `?pad=24` in the URL.
+- **Edges:** the photo fades in from the section above and out into the section below, both white by default. Match other section colours with `?top=f8f7f4&bottom=ffffff` (hex without `#`).
 
 ## Photos and fonts
 
-- `assets/photos/`: `background.webp` (Limassol resort at dusk) and the four card photos. Card photos look best at about 900 × 600 px; which part stays in view is set with `--focus` in `index.html`.
-- `assets/fonts/`: Inter and Instrument Serif, hosted with the section (SIL Open Font Licence, see the `OFL-*.txt` files), so the section does not depend on Google Fonts.
+- **`assets/photos/`:**
+  - `background.webp`: the base photo, Limassol at dusk.
+  - `hotels.webp`, `tours.webp`, `groups.webp`, `weddings.webp`: one per offer, used both on the card and as the background while that card is open. They are 1430–1920 px wide.
+  - `groups.webp` is cropped so the "for sale" sign on the building is out of frame.
+  - Which part of a photo shows on its card is set with `--fx` (0 left … 1 right) on the card in `index.html`.
+- **`assets/fonts/`:** Inter and Instrument Serif, hosted with the section (SIL Open Font Licence, see the `OFL-*.txt` files).
 
 ## Files
 
 ```
 early-booking/
-├── index.html               the section: headline, countdown, trust points, four offers
-├── css/early-booking.css    layout, glass countdown, cards, 3D tilt, breakpoints, motion
-├── js/early-booking.js      countdown and deadline, entrance, tilt, swipe deck
+├── index.html               promotion, countdown, the four offer cards, navigation
+├── css/early-booking.css    layout, glass countdown, concave cards, orbit, breakpoints
+├── js/early-booking.js      countdown, orbit and sequence, autoplay, controls
 └── assets/
     ├── fonts/               Inter and Instrument Serif (woff2) with their licences
-    └── photos/              background and the four card photos (WebP)
+    └── photos/              base background and the four offer photos (WebP)
 ```
 
 Plain HTML, CSS and vanilla JS: no build step and no libraries. All paths are relative.
