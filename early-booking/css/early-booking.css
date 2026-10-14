@@ -1,8 +1,10 @@
 /* =====================================================================
-   WWE Travel CY · Early booking 2027 (compact, about 350 px on desktop)
-   Left: the promotion. Right: a slim glass countdown and a 3D orbit of
-   four concave offer cards. The open card's photo fades into the
-   section background; after the fourth offer the base photo returns.
+   WWE Travel CY · Early booking 2027 (compact, 380 px on desktop)
+   A rounded photo panel with a soft shadow. Left: the promotion.
+   Right: a slim glass countdown and a 3D orbit of four concave offer
+   cards; the card in front reaches past the panel's bottom edge. The
+   open card's photo fades into the panel; after the fourth offer the
+   base photo returns.
    ===================================================================== */
 
 /* fonts are hosted with the section (SIL Open Font Licence, see assets/fonts) */
@@ -25,9 +27,14 @@
   --edge-top: #FFFFFF;
   --edge-bottom: #FFFFFF;
 
-  /* no side padding: it is set in Wix (or with ?pad=) */
+  /* no page padding of its own: it is set in Wix (or with ?pad=) */
   --pad-x: 0px;
-  --section-h: 350px;
+  --section-h: 380px;                /* height when opened on its own; in Wix it fills the frame */
+  --inset-x: 16px;                   /* room for the panel's side shadow */
+  --inset-top: 8px;
+  --overhang: 64px;                  /* space under the panel that the front card reaches into */
+  --card-bottom: 4px;                /* the front card's distance from the bottom of the frame */
+  --panel-radius: 24px;
   --cw: 236px;                       /* card width */
   --ch: 260px;                       /* card height */
   --radius: 16px;
@@ -39,6 +46,7 @@
 
 *, *::before, *::after { box-sizing: border-box; }
 html { color-scheme: light; -webkit-text-size-adjust: 100%; background: var(--edge-bottom); }
+html.is-embedded { background: transparent; }   /* in Wix the page shows around the panel */
 body { margin: 0; font-family: var(--sans); color: var(--white); -webkit-font-smoothing: antialiased; }
 html.is-embedded, html.is-embedded body { overflow: hidden; }
 img, svg { display: block; }
@@ -47,9 +55,25 @@ button { font: inherit; color: inherit; }
 /* ---------------------------------------------------------------------
    Section and backgrounds
    --------------------------------------------------------------------- */
-.eb { position: relative; isolation: isolate; overflow: hidden; height: var(--section-h); }
+.eb { position: relative; isolation: isolate; overflow: hidden; height: var(--section-h); padding: 0 var(--pad-x); }
+html.is-embedded .eb { height: 100vh; }
 
-.eb__bg { position: absolute; inset: 0; z-index: -1; }
+.eb__bg {
+  position: absolute;
+  top: var(--inset-top);
+  left: calc(var(--pad-x) + var(--inset-x));
+  right: calc(var(--pad-x) + var(--inset-x));
+  bottom: var(--overhang);
+  z-index: -1;
+  overflow: hidden;
+  border-radius: var(--panel-radius);
+  background: rgb(var(--sea));
+  box-shadow:
+    0 1px 3px rgba(var(--sea), 0.12),
+    0 18px 40px -18px rgba(var(--sea), 0.45),
+    0 34px 70px -40px rgba(var(--sea), 0.5);
+  transform: translateZ(0);          /* keeps the rounded clip crisp while the photos fade */
+}
 .eb__photo {
   position: absolute;
   inset: 0;
@@ -77,15 +101,16 @@ button { font: inherit; color: inherit; }
     linear-gradient(90deg, rgba(var(--sea), 0.9) 0%, rgba(var(--sea), 0.76) 30%, rgba(var(--sea), 0.42) 55%, rgba(var(--sea), 0.22) 78%, rgba(var(--sea), 0.16) 100%),
     linear-gradient(180deg, rgba(var(--sea), 0.18), rgba(var(--sea), 0.06));
 }
-/* soft transitions into the sections above and below */
+/* soft white light at the top and bottom of the panel */
 .eb__bg::after {
   content: "";
   position: absolute;
   inset: 0;
   z-index: 2;
   background:
-    linear-gradient(180deg, var(--edge-top) 0, rgba(255, 255, 255, 0) 100%) top / 100% 40px no-repeat,
-    linear-gradient(0deg, var(--edge-bottom) 0, rgba(255, 255, 255, 0) 100%) bottom / 100% 40px no-repeat;
+    linear-gradient(180deg, rgba(255, 255, 255, 0.5) 0, rgba(255, 255, 255, 0) 100%) top / 100% 42px no-repeat,
+    linear-gradient(0deg, rgba(255, 255, 255, 0.42) 0, rgba(255, 255, 255, 0) 100%) bottom / 100% 42px no-repeat;
+  pointer-events: none;
 }
 
 .eb__inner {
@@ -93,7 +118,7 @@ button { font: inherit; color: inherit; }
   grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
   gap: 24px;
   height: 100%;
-  padding: 0 var(--pad-x);
+  padding: var(--inset-top) var(--inset-x) 0;
 }
 
 /* ---------------------------------------------------------------------
@@ -102,7 +127,8 @@ button { font: inherit; color: inherit; }
 .eb__left {
   align-self: center;
   min-width: 0;
-  padding-left: clamp(0px, 3vw, 40px);
+  margin-bottom: calc(var(--overhang) - var(--inset-top));   /* centred on the panel, not the frame */
+  padding-left: clamp(22px, 3vw, 44px);
   text-shadow: 0 1px 16px rgba(var(--sea), 0.4);
 }
 .eb__eyebrow {
@@ -153,7 +179,7 @@ button { font: inherit; color: inherit; }
 .eb__usp {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px 18px;
+  gap: 8px 16px;
   margin: 18px 0 0;
   padding: 0;
   list-style: none;
@@ -179,7 +205,7 @@ button { font: inherit; color: inherit; }
   grid-template-rows: auto minmax(0, 1fr);
   gap: 6px;
   min-width: 0;
-  padding: 38px 0 4px;
+  padding: 26px 18px 0 0;
 }
 .eb__time { display: flex; align-items: center; gap: 14px; min-width: 0; }
 
@@ -248,10 +274,10 @@ button { font: inherit; color: inherit; }
   --sc: calc(var(--cw) * 0.68);      /* centre slice width */
   position: absolute;
   left: 50%;
-  top: 50%;
+  bottom: var(--card-bottom);
   width: var(--cw);
   height: var(--ch);
-  margin: calc(var(--ch) / -2) 0 0 calc(var(--cw) / -2);
+  margin-left: calc(var(--cw) / -2);
   transform-style: preserve-3d;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
@@ -275,7 +301,7 @@ button { font: inherit; color: inherit; }
   backface-visibility: hidden;
 }
 .oc__slice--l { width: var(--sl); border-radius: var(--radius) 0 0 var(--radius); transform-origin: 100% 50%; transform: rotateY(-22deg); background-position: var(--bx) var(--by); }
-.oc__slice--c { width: var(--sc); background-position: calc(var(--bx) - var(--sl)) var(--by); }
+.oc__slice--c { width: calc(var(--sc) + 1px); margin-right: -1px; background-position: calc(var(--bx) - var(--sl)) var(--by); }
 .oc__slice--r { width: var(--sl); border-radius: 0 var(--radius) var(--radius) 0; transform-origin: 0% 50%; transform: rotateY(22deg); background-position: calc(var(--bx) - var(--sl) - var(--sc)) var(--by); }
 /* light and shade sell the curve; the gradient keeps the copy readable */
 .oc__slice::after {
@@ -283,7 +309,7 @@ button { font: inherit; color: inherit; }
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: linear-gradient(180deg, rgba(var(--sea), 0) 28%, rgba(var(--sea), 0.62) 56%, rgba(var(--sea), 0.93) 100%);
+  background: linear-gradient(180deg, rgba(var(--sea), 0.05) 0%, rgba(var(--sea), 0.12) 22%, rgba(var(--sea), 0.62) 48%, rgba(var(--sea), 0.94) 100%);
 }
 .oc__slice--l::before,
 .oc__slice--r::before,
@@ -339,8 +365,8 @@ button { font: inherit; color: inherit; }
   text-shadow: 0 1px 10px rgba(var(--sea), 0.5);
 }
 .oc__deal small { font-size: 10.5px; font-weight: 500; color: rgba(255, 255, 255, 0.8); }
-.oc__deal b { font-family: var(--serif); font-style: italic; font-weight: 400; font-size: 34px; line-height: 0.95; color: var(--accent-light); }
-.oc__deal span { font-family: var(--serif); font-style: italic; font-size: 16px; text-transform: uppercase; color: var(--accent-light); }
+.oc__deal b { font-family: var(--serif); font-style: italic; font-weight: 400; font-size: 34px; line-height: 0.95; color: var(--white); text-shadow: 0 2px 14px rgba(var(--sea), 0.7); }
+.oc__deal span { font-family: var(--serif); font-style: italic; font-size: 16px; text-transform: uppercase; color: var(--white); }
 .oc__title {
   margin: 0;
   font-size: 15px;
@@ -393,18 +419,16 @@ button { font: inherit; color: inherit; }
    --------------------------------------------------------------------- */
 .eb__nav {
   position: absolute;
-  right: 10px;
-  bottom: 12px;
+  right: 0;
+  bottom: calc((var(--overhang) - 36px) / 2);   /* under the panel, on the page */
   z-index: 50;
   display: flex;
   align-items: center;
   gap: 6px;
   padding: 3px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.12);
-  border: 1px solid rgba(255, 255, 255, 0.24);
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
+  background: rgba(var(--sea), 0.05);
+  border: 1px solid rgba(var(--sea), 0.14);
 }
 .eb__arrow {
   display: grid;
@@ -415,16 +439,16 @@ button { font: inherit; color: inherit; }
   border: 0;
   border-radius: 50%;
   background: transparent;
-  color: var(--white);
+  color: rgb(var(--sea));
   cursor: pointer;
   transition: background-color 0.2s ease, color 0.2s ease;
 }
 .eb__arrow svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-.eb__arrow:hover { background: var(--white); color: var(--ink); }
-.eb__arrow:focus-visible { outline: 2px solid var(--white); outline-offset: 1px; }
+.eb__arrow:hover { background: rgb(var(--sea)); color: var(--white); }
+.eb__arrow:focus-visible { outline: 2px solid var(--blue); outline-offset: 1px; }
 .eb__bars { display: flex; gap: 4px; }
-.eb__bars i { position: relative; width: 16px; height: 2px; border-radius: 2px; background: rgba(255, 255, 255, 0.3); overflow: hidden; }
-.eb__bars b { position: absolute; inset: 0; background: var(--white); transform: scaleX(0); transform-origin: left center; }
+.eb__bars i { position: relative; width: 16px; height: 2px; border-radius: 2px; background: rgba(var(--sea), 0.18); overflow: hidden; }
+.eb__bars b { position: absolute; inset: 0; background: rgb(var(--sea)); transform: scaleX(0); transform-origin: left center; }
 .eb__bars i.is-done b { transform: scaleX(1); }
 
 /* ---------------------------------------------------------------------
@@ -453,23 +477,25 @@ html.js .eb.is-in .reveal {
 @media (max-width: 1199px) {
   .eb__inner { grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); gap: 16px; }
   .eb__usp { gap: 8px 14px; }
+  .eb__left { padding-left: 28px; }
   .cd__seg { padding: 6px 9px 7px; }
 }
 
 /* tablet: the same two columns, a little smaller */
 @media (max-width: 1023px) {
-  :root { --section-h: 340px; --cw: 206px; --ch: 238px; }
+  :root { --section-h: 360px; --cw: 206px; --ch: 238px; --overhang: 60px; --inset-x: 12px; }
   .eb__inner { grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr); }
   .eb__title { font-size: 27px; }
-  .eb__usp { flex-direction: column; gap: 7px; }
+  .eb__usp { flex-direction: column; gap: 6px; margin-top: 14px; }
+  .eb__cta { margin-top: 14px; }
+  .eb__note { margin-top: 8px; }
   .eb__time { flex-wrap: wrap; gap: 6px 12px; }
-  .eb__right { padding-top: 30px; }
+  .eb__right { padding-top: 22px; padding-right: 12px; }
   .cd__num { font-size: 21px; }
   .cd__seg { padding: 5px 8px 6px; }
   .eb__deadline { flex-basis: 100%; }
   .oc__deal b { font-size: 30px; }
   .oc__title { font-size: 14px; }
-  .eb__nav { right: 0; bottom: 4px; }
   .eb__bars i { width: 12px; }
 }
 
@@ -481,20 +507,22 @@ html.js .eb.is-in .reveal {
 /* mobile: stacked, the carousel under the promotion
    (Wix's tablet frame, 750–767 px wide, keeps the tablet layout while it is short) */
 @media (max-width: 767px) and (min-height: 500px), (max-width: 749px) {
+  :root { --section-h: auto; --cw: 236px; --ch: 260px; --inset-x: 12px; --overhang: 116px; --card-bottom: 52px; }
   .eb__bars { display: flex; }
-  :root { --section-h: auto; --cw: 236px; --ch: 260px; }
-  .eb__inner { grid-template-columns: minmax(0, 1fr); gap: 22px; height: auto; padding-top: 54px; padding-bottom: 40px; }
-  .eb__left { padding: 0 16px; }
+  html.is-embedded .eb { height: auto; }
+  .eb__inner { grid-template-columns: minmax(0, 1fr); gap: 22px; height: auto; padding: calc(var(--inset-top) + 40px) var(--inset-x) 0; }
+  .eb__left { margin-bottom: 0; padding: 0 16px; }
   .eb__title { font-size: 30px; }
   .eb__usp { flex-direction: column; gap: 8px; }
   .eb__right { padding: 0; gap: 10px; }
   .eb__time { flex-direction: column; align-items: flex-start; gap: 8px; padding: 0 16px; }
   .eb__deadline { flex-basis: auto; }
-  .eb__stage { height: 330px; }
-  .eb__nav { left: 50%; right: auto; bottom: 0; transform: translateX(-50%); }
+  .eb__stage { height: 380px; }
   .eb__bg::before {
     background: linear-gradient(180deg, rgba(var(--sea), 0.82) 0%, rgba(var(--sea), 0.7) 45%, rgba(var(--sea), 0.45) 75%, rgba(var(--sea), 0.35) 100%);
   }
+  /* the controls sit under the front card, centred */
+  .eb__nav { left: 50%; right: auto; bottom: 4px; transform: translateX(-50%); }
 }
 
 /* ---------------------------------------------------------------------
@@ -504,3 +532,11 @@ html.reduced-motion .reveal { opacity: 1 !important; transform: none !important;
 html.reduced-motion .eb__photo { transition: none !important; transform: none !important; }
 html.reduced-motion .cd__num.is-flip { animation: none; }
 html.reduced-motion .oc__more { transition: none !important; }
+
+/* very small phones: a narrower countdown */
+@media (max-width: 359px) {
+  .cd__seg { padding: 5px 6px 6px; gap: 3px; }
+  .cd__num { font-size: 20px; }
+  .cd__lab { font-size: 8px; letter-spacing: 0.1em; }
+  .eb__time { padding: 0 12px; }
+}
