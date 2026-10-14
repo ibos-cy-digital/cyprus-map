@@ -55,7 +55,7 @@ The form is `https://www.wwe-cy.com/tailored-program-package-request`. The secon
 
 - **Fit:** inside the iframe the section fills the frame height exactly, so a few pixels more or less never leave a gap. On mobile any extra height is empty page below.
 - **Width:** the panel keeps **16 px** from the frame's left and right edges (12 px on tablet and mobile), so its side shadow shows. Set the page padding in Wix Studio; to add more inside the embed, use `?pad=24` in the URL.
-- **Background:** inside the iframe everything around the panel is transparent, so the page colour (white) shows. The panel has a soft white light at its top and bottom edges.
+- **Background:** inside the iframe everything around the panel is transparent, so the page colour (white) shows. The panel has a soft deep-blue shade along its top and bottom edges.
 - **Navigation:** the arrows and progress bars sit under the panel, on the page, at the bottom right (centred under the card on mobile).
 
 ## Photos and fonts
