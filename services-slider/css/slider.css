@@ -55,7 +55,7 @@ body::before {
   z-index: -1;
   pointer-events: none;
   background: url("../assets/contours.svg") center / cover no-repeat;
-  opacity: 0.35;
+  opacity: 0.26;                     /* about 25% softer than before */
   -webkit-mask-image: radial-gradient(ellipse 62% 70% at 50% 50%, transparent 45%, #000 100%);
   mask-image: radial-gradient(ellipse 62% 70% at 50% 50%, transparent 45%, #000 100%);
 }
@@ -314,7 +314,7 @@ html.reduced-motion .dot.is-active i { transform: none !important; }
   .card__body { padding: 18px 18px 20px; }
   .card__line { font-size: 13.5px; }
   .card__btn { height: 38px; margin-top: 14px; font-size: 13.5px; padding: 0 15px; }
-  body::before { opacity: 0.28; background-size: 260% auto; }
+  body::before { opacity: 0.21; background-size: 260% auto; }
 }
 
 /* small phones: the longest button label is shortened ("Explore Tours") */
