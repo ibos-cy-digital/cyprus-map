@@ -62,7 +62,7 @@ The form is `https://www.wwe-cy.com/tailored-program-package-request`. The secon
 
 - **`assets/photos/`:**
   - `background.webp`: the base photo, Limassol at dusk.
-  - `hotels.webp` (pool in a Cyprus resort), `tours.webp` (pirate-ship cruise), `groups.webp` (a group at a water park), `weddings.webp` (beach ceremony): one per offer, used both on the card and as the background while that card is open. They are 1500–1920 px wide.
+  - `hotels.webp` (palms reflected in a resort pool), `tours.webp` (a turquoise bay with one white boat), `groups.webp` (a guided group at the Kourion amphitheatre above the sea), `weddings.webp` (beach ceremony): one per offer, used both on the card and as the background while that card is open. They are 1672–1920 px wide.
   - Which part of a photo shows on its card is set with `--fx` (0 left … 1 right) on the card in `index.html`.
 - **`assets/fonts/`:** Inter and Instrument Serif, hosted with the section (SIL Open Font Licence, see the `OFL-*.txt` files).
 
