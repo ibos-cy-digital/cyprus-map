@@ -102,7 +102,7 @@ Seven partners are shown in a 4 + 3 grid (second row centred) of equal white til
 - **Texts, links, reviews:** in `index.html`. Each slide is one `<article class="sl">` block with its eyebrow, headline, line, button, and visual. Keep the reviews verbatim.
 - **Timing:** `DURATION` in `js/banner.js` (6000 ms).
 - **Colours and sizes:** `css/banner.css`. The palette and layout variables are at the top (`--sea`, `--overlay`, `--glass`, `--blue`, `--max`, `--card-h`), and the breakpoints are at the end.
-- **Photos** (full-bleed behind each slide): `assets/photos/`. Photos 1200 px wide or more look sharpest full-bleed. They are copies of the map section's photos, so the banner doesn't depend on that folder.
+- **Photos** (full-bleed behind each slide): `assets/photos/`. Photos 1200 px wide or more look sharpest full-bleed. Slides 1–3 use copies of the map section's photos; the reviews slide uses `reviews-beach.webp` (a calm turquoise beach) and the payments slide `secure-promenade.webp` (a palm-lined seafront promenade). Both keep the right-hand side calm (sea and sky) behind the glass card.
 - **Payment logos:** `assets/pay/*.svg`, from [Simple Icons](https://simpleicons.org) (CC0), coloured with each brand's colour. Use them only to show accepted payment methods, as the brands' guidelines allow.
 
 ## Files
