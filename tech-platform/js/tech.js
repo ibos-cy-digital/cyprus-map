@@ -10,13 +10,13 @@
   var touch = window.matchMedia && matchMedia('(hover: none)').matches;
 
   /* ---------- links: change targets here ---------- */
-  var MAIL = 'mailto:info@wwe-cy.com?subject=';
+  var FORM = 'https://www.wwe-cy.com/demo-request-platform';
   var LINKS = {
-    demo: MAIL + encodeURIComponent('Travel Tech Platform: free demo'),
-    start: MAIL + encodeURIComponent('Travel Tech Platform: Advanced Automation'),
-    consult: MAIL + encodeURIComponent('Travel Tech Platform: free consultation'),
-    contact: MAIL + encodeURIComponent('Travel Tech Platform'),
-    pricing: 'https://www.wwe-cy.com/travel-tech-platform#pricing',
+    demo: FORM,
+    start: FORM,
+    consult: FORM,
+    contact: FORM,
+    pricing: FORM,
     whatsapp: 'https://wa.me/35722420437',
     phone: 'tel:+35722420437',
     email: 'mailto:info@wwe-cy.com'
@@ -51,24 +51,24 @@
     (v ? hooks.enter : hooks.leave)[sec.id] && (v ? hooks.enter : hooks.leave)[sec.id].forEach(function (f) { f(); });
   }
 
-  /* ---------- count-ups ---------- */
-  function countUp(sec) {
-    sec.querySelectorAll('[data-count]').forEach(function (el, i) {
+  /* ---------- count-ups (run when their card comes into view) ---------- */
+  function countUp(box) {
+    var delay = 350 + (parseFloat(box.style.getPropertyValue('--d')) || 0) * 90;
+    box.querySelectorAll('[data-count]').forEach(function (el, i) {
       if (el.dataset.done) return;
       el.dataset.done = '1';
       var to = +el.getAttribute('data-count');
       if (reduced) { el.textContent = to; return; }
-      var t0 = null, dur = 1400 + i * 80;
+      var t0 = null, dur = 1800 + i * 120;
       function step(t) {
         if (!t0) t0 = t;
         var k = Math.min(1, (t - t0) / dur);
         el.textContent = Math.round(to * (1 - Math.pow(1 - k, 3)));
         if (k < 1) requestAnimationFrame(step);
       }
-      setTimeout(function () { requestAnimationFrame(step); }, 350);
+      setTimeout(function () { requestAnimationFrame(step); }, delay);
     });
   }
-  sections.forEach(function (s) { on(s.id, function () { countUp(s); }); });
 
   /* ---------- star fields ---------- */
   function stars(sec) {
@@ -414,10 +414,10 @@
       if (!reduced) raf = requestAnimationFrame(draw);
     }
     var fontReady = document.fonts && document.fonts.load ? document.fonts.load('700 200px Syne').catch(function () {}) : Promise.resolve();
-    var played = false;
+    t0 = Infinity; // dots wait, scattered and dim, until the wordmark itself is on screen
+    cv.parentNode.addEventListener('reveal', function () { fontReady.then(function () { t0 = performance.now(); }); });
     on('cta', function () {
       fontReady.then(function () {
-        if (!played) { t0 = performance.now(); played = true; }
         cancelAnimationFrame(raf);
         raf = requestAnimationFrame(draw);
       });
@@ -452,13 +452,35 @@
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
   })();
 
-  /* ---------- observe ---------- */
+  /* ---------- observe ----------
+     Sections switch their loops on and off. Each card, heading and the
+     wordmark reveals on its own once a good part of it is on screen, so a
+     tall frame does not finish its animations before you scroll to them. */
+  var items = [];
+  sections.forEach(function (s) { items = items.concat([].slice.call(s.querySelectorAll('.rv, .mark'))); });
+  function reveal(el) {
+    if (el.classList.contains('is-in')) return;
+    el.classList.add('is-in');
+    countUp(el);
+    el.dispatchEvent(new Event('reveal'));
+  }
   if (!('IntersectionObserver' in window) || reduced) {
     sections.forEach(function (s) { setVisible(s, true); });
+    items.forEach(reveal);
     return;
   }
   var io = new IntersectionObserver(function (entries) {
     entries.forEach(function (e) { setVisible(e.target, e.isIntersecting); });
   }, { threshold: [0, .12] });
   sections.forEach(function (s) { io.observe(s); });
+  var eio = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      // half of the element, or 260px of a tall one
+      if (e.isIntersecting && e.intersectionRect.height >= Math.min(e.boundingClientRect.height * .5, 260)) {
+        reveal(e.target);
+        eio.unobserve(e.target);
+      }
+    });
+  }, { threshold: [0, .1, .25, .5, .75, 1] });
+  items.forEach(function (el) { eio.observe(el); });
 })();
