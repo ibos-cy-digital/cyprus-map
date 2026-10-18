@@ -1,0 +1,434 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>Travel Tech Platform · WWE Travel CY</title>
+  <meta name="description" content="One unified B2B platform for travel and hospitality businesses in Cyprus: bookings, payments, inventory, distribution, AI marketing, CRM and analytics behind one login.">
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/tech.css">
+  <!-- before first paint: embed state, reduced motion and which section this frame shows (?s=hero|audience|modules|results|ai|pricing|cta) -->
+  <script>
+    (function (d) {
+      var r = d.documentElement, c = r.classList;
+      c.add('js');
+      try { if (window.self !== window.top) c.add('is-embedded'); } catch (e) { c.add('is-embedded'); }
+      if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) c.add('reduced-motion');
+      var s = new URLSearchParams(location.search).get('s');
+      if (s && /^(hero|audience|modules|results|ai|pricing|cta)$/.test(s)) { r.setAttribute('data-s', s); c.add('is-single'); }
+    })(document);
+  </script>
+</head>
+<body>
+
+<!-- shared line icons -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-bed" viewBox="0 0 24 24"><path d="M3 19v-8.5A1.5 1.5 0 0 1 4.5 9h15a1.5 1.5 0 0 1 1.5 1.5V19M3 15h18"/><path d="M6.5 9V7.2c0-.7.5-1.2 1.2-1.2h2.6c.7 0 1.2.5 1.2 1.2V9"/></symbol>
+    <symbol id="i-send" viewBox="0 0 24 24"><path d="M20.5 3.5 3.5 10.6l6.8 2.6 2.6 6.8 7.6-16.5Z"/><path d="m10.3 13.2 4.4-4.4"/></symbol>
+    <symbol id="i-map" viewBox="0 0 24 24"><path d="M9 4 3.5 6.2v13.3L9 17.3l6 2.4 5.5-2.2V4.2L15 6.4 9 4Z"/><path d="M9 4v13.3M15 6.4v13.3"/></symbol>
+    <symbol id="i-dine" viewBox="0 0 24 24"><path d="M6.5 3v7.5M4.5 3v4.8a2 2 0 0 0 4 0V3M6.5 10.5V21"/><path d="M17.5 21V3c-2 1.1-3.5 3.5-3.5 6.5V13h3.5"/></symbol>
+    <symbol id="i-bag" viewBox="0 0 24 24"><path d="M5 8h14l-1.1 12.2a1 1 0 0 1-1 .8H7.1a1 1 0 0 1-1-.8L5 8Z"/><path d="M9 10V6.8a3 3 0 0 1 6 0V10"/></symbol>
+    <symbol id="i-rocket" viewBox="0 0 24 24"><path d="M13.5 15.5 8.5 10.5C10.6 6 14.3 3.6 20.4 3.6c0 6.1-2.4 9.8-6.9 11.9Z"/><circle cx="15.3" cy="8.7" r="1.6"/><path d="M8.5 10.5 5 10.8 3.5 13l3.6.9M13.5 15.5l-.3 3.5-2.2 1.5-.9-3.6M5.5 18.5c.4-1.3 1.2-2.1 2.4-2.4"/></symbol>
+    <symbol id="i-card" viewBox="0 0 24 24"><rect x="3" y="5.5" width="18" height="13" rx="2.5"/><path d="M3 10h18M6.5 14.5h4"/></symbol>
+    <symbol id="i-box" viewBox="0 0 24 24"><path d="M12 3 20 7.2v9.6L12 21l-8-4.2V7.2L12 3Z"/><path d="M4 7.2 12 11.4l8-4.2M12 11.4V21M8 5.1l8 4.2"/></symbol>
+    <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.3 2.4 3.4 5.2 3.4 8.5S14.3 18.1 12 20.5M12 3.5C9.7 5.9 8.6 8.7 8.6 12s1.1 6.1 3.4 8.5"/></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24"><path d="M10 3.5 11.6 8a3 3 0 0 0 1.9 1.9L18 11.5l-4.5 1.6a3 3 0 0 0-1.9 1.9L10 19.5 8.4 15a3 3 0 0 0-1.9-1.9L2 11.5l4.5-1.6A3 3 0 0 0 8.4 8L10 3.5Z"/><path d="M18.5 3v4M16.5 5h4M19 16v3M17.5 17.5h3"/></symbol>
+    <symbol id="i-flow" viewBox="0 0 24 24"><rect x="3.5" y="4" width="17" height="16.5" rx="2.5"/><path d="M3.5 8.5h17M8 2.5v3M16 2.5v3M7.5 13l1.8 1.8 3.2-3.3M14.5 13.5h2.5M7.5 17.5h9"/></symbol>
+    <symbol id="i-chart" viewBox="0 0 24 24"><path d="M3.5 20.5h17"/><rect x="5" y="12" width="3" height="6" rx=".8"/><rect x="10.5" y="8" width="3" height="10" rx=".8"/><rect x="16" y="4" width="3" height="14" rx=".8"/></symbol>
+    <symbol id="i-pen" viewBox="0 0 24 24"><path d="M4 20l1-4.2L15.6 5.2a2 2 0 0 1 2.8 0l.4.4a2 2 0 0 1 0 2.8L8.2 19 4 20Z"/><path d="m14 6.8 3.2 3.2M13 20h7"/></symbol>
+    <symbol id="i-radar" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m20.5 20.5-4.9-4.9M8 11h1.5l1-2.5 1.5 5 1-2.5H14"/></symbol>
+    <symbol id="i-headset" viewBox="0 0 24 24"><path d="M4.5 14v-2a7.5 7.5 0 0 1 15 0v2"/><rect x="3.5" y="13" width="4" height="6" rx="1.5"/><rect x="16.5" y="13" width="4" height="6" rx="1.5"/><path d="M18.5 19c0 1.5-1.5 2.2-4.5 2.2"/></symbol>
+    <symbol id="i-qr" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="6.5" height="6.5" rx="1.2"/><rect x="14" y="3.5" width="6.5" height="6.5" rx="1.2"/><rect x="3.5" y="14" width="6.5" height="6.5" rx="1.2"/><path d="M14 14h2.5v2.5H14zM18 18h2.5v2.5H18zM18 14h2.5M14 18v2.5"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5M12 14.5v2.5"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4.5 12h15M13.5 6l6 6-6 6"/></symbol>
+    <symbol id="i-wa" viewBox="0 0 24 24"><path d="M12 3.5a8.5 8.5 0 0 0-7.3 12.8L3.5 20.5l4.3-1.1A8.5 8.5 0 1 0 12 3.5Z"/><path d="M9 8.3c.3-.6.6-.6.9-.6h.6c.2 0 .4.1.5.4l.8 1.8c.1.2 0 .5-.1.6l-.6.7c-.1.1-.2.3 0 .5.4.8 1 1.4 1.6 1.9.6.5 1.3.8 1.7 1 .2.1.4 0 .5-.1l.7-.8c.2-.2.4-.2.6-.1l1.7.8c.3.1.4.3.4.5 0 .5-.2 1.2-.7 1.5-.5.4-1.3.6-2.1.4-1.4-.4-2.8-1.2-4-2.4-1.2-1.2-2-2.6-2.4-3.8-.2-.9 0-1.9.4-2.3Z"/></symbol>
+  </defs>
+</svg>
+
+<main>
+
+<!-- 1 · HERO -->
+<section class="sec hero" id="hero" aria-labelledby="hero-title">
+  <canvas class="stars" aria-hidden="true"></canvas>
+  <div class="glow glow--hero" aria-hidden="true"></div>
+  <div class="wrap hero__grid">
+    <div class="hero__copy">
+      <p class="eyebrow rv" style="--d:0"><span class="dot"></span>Travel &amp; hospitality · B2B platform · Cyprus</p>
+      <h1 class="h1 rv" style="--d:1" id="hero-title"><span>Your business.</span> <span class="mute">One login.<br>Total control.</span></h1>
+      <p class="lead rv" style="--d:2">Replace 5+ disconnected tools with one unified platform: bookings, payments, marketing, CRM and AI working in perfect harmony.</p>
+      <div class="btns rv" style="--d:3">
+        <a class="btn btn--primary" data-link="demo" href="#">Book a free demo<svg><use href="#i-arrow"/></svg></a>
+        <a class="btn btn--ghost" data-link="pricing" href="#">View pricing</a>
+        <a class="btn btn--ghost" data-link="contact" href="#">Contact us</a>
+      </div>
+    </div>
+
+    <div class="hero__visual rv" style="--d:2" aria-hidden="true">
+      <div class="orbit" id="orbit">
+        <svg class="orbit__rings" viewBox="0 0 560 460">
+          <defs>
+            <linearGradient id="ring-g" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0" stop-color="#9B90FF" stop-opacity=".05"/>
+              <stop offset=".5" stop-color="#9B90FF" stop-opacity=".55"/>
+              <stop offset="1" stop-color="#9B90FF" stop-opacity=".05"/>
+            </linearGradient>
+          </defs>
+          <g transform="rotate(-10 280 230)">
+            <ellipse class="ring ring--outer" cx="280" cy="230" rx="250" ry="128"/>
+            <ellipse class="ring ring--dash" cx="280" cy="230" rx="200" ry="98"/>
+            <ellipse class="ring ring--inner" cx="280" cy="230" rx="150" ry="70"/>
+          </g>
+        </svg>
+        <div class="orbit__core">
+          <span class="core__halo"></span>
+          <span class="core__ring"></span>
+          <div class="core__body">
+            <svg class="core__lock"><use href="#i-lock"/></svg>
+            <span class="core__title">One login</span>
+            <span class="core__sub">Total control</span>
+          </div>
+        </div>
+        <span class="chip" data-a="0"><i></i>Bookings</span>
+        <span class="chip" data-a="1"><i></i>Payments</span>
+        <span class="chip" data-a="2"><i></i>Inventory</span>
+        <span class="chip" data-a="3"><i></i>Distribution</span>
+        <span class="chip" data-a="4"><i></i>AI marketing</span>
+        <span class="chip" data-a="5"><i></i>CRM &amp; analytics</span>
+        <span class="comet"></span>
+      </div>
+    </div>
+
+    <dl class="stats rv" style="--d:4">
+      <div class="stat"><dt><span data-count="40">0</span>%</dt><dd>sales growth average</dd></div>
+      <div class="stat"><dt><span data-count="70">0</span>%</dt><dd>less manual work</dd></div>
+      <div class="stat"><dt><span data-count="5">0</span>+</dt><dd>tools replaced by one</dd></div>
+      <div class="stat"><dt><span data-count="4">0</span>–<span data-count="5">0</span>h</dt><dd>saved per day</dd></div>
+    </dl>
+  </div>
+</section>
+
+<!-- 2 · WHO IT'S FOR -->
+<section class="sec audience" id="audience" aria-labelledby="aud-title">
+  <canvas class="stars" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <header class="head">
+      <p class="eyebrow rv" style="--d:0"><span class="dot"></span>Who it's for</p>
+      <h2 class="h2 rv" style="--d:1" id="aud-title">Built for every business. <span class="mute">Scales with you.</span></h2>
+      <p class="sub rv" style="--d:2">Whether you run one hotel or twenty, a local tour agency, a store or a restaurant chain, the platform grows with you.</p>
+    </header>
+    <ul class="aud">
+      <li class="card aud__item rv" style="--d:2"><span class="ico"><svg><use href="#i-bed"/></svg></span><div><h3>Hotels &amp; properties</h3><p class="tags">Reduce OTA commissions · Direct bookings</p></div></li>
+      <li class="card aud__item rv" style="--d:3"><span class="ico"><svg><use href="#i-send"/></svg></span><div><h3>Travel agencies</h3><p class="tags">Package management · B2B distribution</p></div></li>
+      <li class="card aud__item rv" style="--d:4"><span class="ico"><svg><use href="#i-map"/></svg></span><div><h3>Tour operators</h3><p class="tags">Multi-channel · Live availability sync</p></div></li>
+      <li class="card aud__item rv" style="--d:3"><span class="ico"><svg><use href="#i-dine"/></svg></span><div><h3>Restaurants &amp; cafés</h3><p class="tags">Reservations · POS · Loyalty programmes</p></div></li>
+      <li class="card aud__item rv" style="--d:4"><span class="ico"><svg><use href="#i-bag"/></svg></span><div><h3>Retail &amp; souvenir shops</h3><p class="tags">Inventory · E-commerce · Promotions</p></div></li>
+      <li class="card aud__item rv" style="--d:5"><span class="ico"><svg><use href="#i-rocket"/></svg></span><div><h3>New ventures</h3><p class="tags">Launch-ready in days, not months</p></div></li>
+    </ul>
+  </div>
+</section>
+
+<!-- 3 · PLATFORM MODULES -->
+<section class="sec modules" id="modules" aria-labelledby="mod-title">
+  <canvas class="stars" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <header class="head">
+      <p class="eyebrow rv" style="--d:0"><span class="dot"></span>Platform modules</p>
+      <h2 class="h2 rv" style="--d:1" id="mod-title">Everything connected. <span class="mute">Nothing missing.</span></h2>
+      <p class="sub rv" style="--d:2">Six integrated modules that replace the chaos of multiple tools with one unified ecosystem.</p>
+    </header>
+    <div class="mods">
+
+      <article class="card mod rv" style="--d:2">
+        <div class="live live--pay" data-cycle="pay">
+          <div class="toast">
+            <span class="toast__ok"><svg><use href="#i-check"/></svg></span>
+            <div><b>Booking confirmed</b><span class="mono" data-slot>BK-24817 · €1,240 · Stripe</span></div>
+          </div>
+          <span class="live__tag">Live</span>
+        </div>
+        <div class="mod__top"><span class="ico"><svg><use href="#i-card"/></svg></span><span class="label">Platform</span></div>
+        <h3>Bookings &amp; Payments</h3>
+        <p>End-to-end payment orchestration (Stripe, PayPal, Visa, Amex), automated invoicing and real-time availability.</p>
+        <ul class="pts">
+          <li>Instant booking confirmation &amp; client notifications</li>
+          <li>Automatic invoices, taxes and receipts</li>
+          <li>24/7 online booking, even while you sleep</li>
+        </ul>
+      </article>
+
+      <article class="card mod rv" style="--d:3">
+        <div class="live live--inv" data-cycle="inv">
+          <div class="inv">
+            <div class="inv__row"><span>Sea-view double</span><span class="inv__bar"><i style="--v:.82"></i></span><b class="mono" data-price="148">€148</b></div>
+            <div class="inv__row"><span>Kourion day tour</span><span class="inv__bar"><i style="--v:.56"></i></span><b class="mono" data-price="65">€65</b></div>
+            <div class="inv__row"><span>Airport transfer</span><span class="inv__bar"><i style="--v:.68"></i></span><b class="mono" data-price="42">€42</b></div>
+          </div>
+          <span class="live__tag">Dynamic pricing</span>
+        </div>
+        <div class="mod__top"><span class="ico"><svg><use href="#i-box"/></svg></span><span class="label">Central command</span></div>
+        <h3>Inventory &amp; Services</h3>
+        <p>Centralised product management: dynamic pricing, package creation and automated upsells across all offerings.</p>
+        <ul class="pts">
+          <li>Dynamic pricing by season, demand and channel</li>
+          <li>Packages and bundles built in minutes</li>
+          <li>Automated upsells at checkout</li>
+        </ul>
+      </article>
+
+      <article class="card mod rv" style="--d:4">
+        <div class="live live--dist" data-cycle="dist">
+          <div class="dist">
+            <span class="dist__ch">Google</span>
+            <span class="dist__ch">Social</span>
+            <span class="dist__ch">Marketplaces</span>
+            <span class="dist__ch">iCal</span>
+          </div>
+          <span class="mono dist__state"><i class="pulse"></i>Availability synced · 0 conflicts</span>
+        </div>
+        <div class="mod__top"><span class="ico"><svg><use href="#i-globe"/></svg></span><span class="label">Growth engine</span></div>
+        <h3>Multi-Channel Distribution</h3>
+        <p>Be everywhere your customers are (Google, social media, marketplaces) with zero risk of double-booking.</p>
+        <ul class="pts">
+          <li>Publish across all platforms with one click</li>
+          <li>Real-time API sync: inventory, pricing, availability</li>
+          <li>iCal integration for effortless scheduling</li>
+        </ul>
+      </article>
+
+      <article class="card mod rv" style="--d:3">
+        <div class="live live--ai" data-cycle="ai">
+          <p class="type mono"><span class="type__k">Aria ›</span> <span data-type>Writing Instagram post · Summer offers</span><i class="caret"></i></p>
+          <span class="prog"><i></i></span>
+          <span class="live__tag">Awaiting approval: 3</span>
+        </div>
+        <div class="mod__top"><span class="ico"><svg><use href="#i-spark"/></svg></span><span class="label">Marketing machine</span></div>
+        <h3>AI-Driven Promotions</h3>
+        <p>8+ AI agents work 24/7, generating posts, emails, blogs, images and campaigns. You just click "Approve" once a month.</p>
+        <ul class="pts">
+          <li>AI content: text, visuals, video, automated</li>
+          <li>Competitor analysis &amp; SEO optimisation (ChatGPT, Gemini)</li>
+          <li>Loyalty programmes, gift cards, promo campaigns</li>
+        </ul>
+      </article>
+
+      <article class="card mod rv" style="--d:4">
+        <div class="live live--flow" data-cycle="flow">
+          <ul class="tasks">
+            <li><span class="tick"><svg><use href="#i-check"/></svg></span><span class="mono">08:30</span>Check-ins prepared</li>
+            <li><span class="tick"><svg><use href="#i-check"/></svg></span><span class="mono">11:00</span>Invoices sent</li>
+            <li><span class="tick"><svg><use href="#i-check"/></svg></span><span class="mono">16:00</span>Guest messages answered</li>
+          </ul>
+        </div>
+        <div class="mod__top"><span class="ico"><svg><use href="#i-flow"/></svg></span><span class="label">Operations hub</span></div>
+        <h3>Daily Workflow</h3>
+        <p>One dashboard for all day-to-day operations: bookings, orders, inventory, check-ins and client communications.</p>
+        <ul class="pts">
+          <li>Manage bookings, orders and inventory in real time</li>
+          <li>Automated invoices, confirmations and receipts</li>
+          <li>Communicate with guests automatically</li>
+        </ul>
+      </article>
+
+      <article class="card mod rv" style="--d:5">
+        <div class="live live--crm" data-cycle="crm">
+          <div class="bars"><i style="--h:.34"></i><i style="--h:.48"></i><i style="--h:.42"></i><i style="--h:.6"></i><i style="--h:.55"></i><i style="--h:.74"></i><i style="--h:.92"></i></div>
+          <div class="crm__k"><span class="mono">Revenue</span><b>+18%</b></div>
+        </div>
+        <div class="mod__top"><span class="ico"><svg><use href="#i-chart"/></svg></span><span class="label">Command center</span></div>
+        <h3>CRM &amp; Analytics</h3>
+        <p>Real-time dashboards for revenue, profits, lead sources and customer behaviour, with AI-generated market intelligence reports.</p>
+        <ul class="pts">
+          <li>Smart CRM with automated follow-ups</li>
+          <li>Revenue, profit and margin analytics per product</li>
+          <li>Export reports to PDF or Excel</li>
+        </ul>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- 4 · RESULTS -->
+<section class="sec results" id="results" aria-labelledby="res-title">
+  <canvas class="stars" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <header class="head head--split">
+      <div>
+        <p class="eyebrow rv" style="--d:0"><span class="dot"></span>Results</p>
+        <h2 class="h2 rv" style="--d:1" id="res-title">Numbers that matter <span class="mute">to your business.</span></h2>
+      </div>
+      <p class="sub rv" style="--d:2">Average results reported by businesses using the platform after 90 days.</p>
+    </header>
+    <div class="kpis">
+      <article class="card kpi rv" style="--d:2">
+        <p class="label">Sales growth</p>
+        <p class="kpi__val"><span data-count="40">0</span>%</p>
+        <p class="kpi__delta"><svg><use href="#i-arrow"/></svg>up in 90 days</p>
+        <svg class="spark" viewBox="0 0 200 48" preserveAspectRatio="none"><path class="spark__area" d="M0 44 L25 40 L50 41 L75 33 L100 30 L125 24 L150 20 L175 12 L200 6 L200 48 L0 48 Z"/><path class="spark__line" d="M0 44 L25 40 L50 41 L75 33 L100 30 L125 24 L150 20 L175 12 L200 6"/></svg>
+        <p class="kpi__foot">Multi-channel distribution combined with AI-driven marketing campaigns.</p>
+      </article>
+      <article class="card kpi rv" style="--d:3">
+        <p class="label">Manual work</p>
+        <p class="kpi__val"><span data-count="70">0</span>%</p>
+        <p class="kpi__delta is-down"><svg><use href="#i-arrow"/></svg>less, every day</p>
+        <svg class="spark" viewBox="0 0 200 48" preserveAspectRatio="none"><path class="spark__area" d="M0 6 L25 9 L50 8 L75 16 L100 22 L125 27 L150 34 L175 38 L200 42 L200 48 L0 48 Z"/><path class="spark__line" d="M0 6 L25 9 L50 8 L75 16 L100 22 L125 27 L150 34 L175 38 L200 42"/></svg>
+        <p class="kpi__foot">End-to-end automation across bookings, payments, marketing and operations.</p>
+      </article>
+      <article class="card kpi rv" style="--d:4">
+        <p class="label">Operating costs</p>
+        <p class="kpi__val"><span data-count="30">0</span>%</p>
+        <p class="kpi__delta is-down"><svg><use href="#i-arrow"/></svg>lower costs</p>
+        <svg class="spark" viewBox="0 0 200 48" preserveAspectRatio="none"><path class="spark__area" d="M0 10 L25 12 L50 9 L75 18 L100 20 L125 26 L150 27 L175 33 L200 36 L200 48 L0 48 Z"/><path class="spark__line" d="M0 10 L25 12 L50 9 L75 18 L100 20 L125 26 L150 27 L175 33 L200 36"/></svg>
+        <p class="kpi__foot">One platform replaces 5+ separate tools: zero duplication, one invoice.</p>
+      </article>
+      <article class="card kpi rv" style="--d:5">
+        <p class="label">More leads</p>
+        <p class="kpi__val"><span data-count="25">0</span>%</p>
+        <p class="kpi__delta"><svg><use href="#i-arrow"/></svg>more enquiries</p>
+        <svg class="spark" viewBox="0 0 200 48" preserveAspectRatio="none"><path class="spark__area" d="M0 40 L25 38 L50 34 L75 36 L100 28 L125 26 L150 18 L175 16 L200 10 L200 48 L0 48 Z"/><path class="spark__line" d="M0 40 L25 38 L50 34 L75 36 L100 28 L125 26 L150 18 L175 16 L200 10"/></svg>
+        <p class="kpi__foot">Smart CRM with automated follow-ups and abandoned cart recovery.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- 5 · AI CO-PILOTS -->
+<section class="sec ai" id="ai" aria-labelledby="ai-title">
+  <canvas class="stars" aria-hidden="true"></canvas>
+  <div class="glow glow--ai" aria-hidden="true"></div>
+  <div class="wrap">
+    <header class="head head--split">
+      <div>
+        <p class="eyebrow rv" style="--d:0"><span class="dot"></span>AI co-pilots</p>
+        <h2 class="h2 rv" style="--d:1" id="ai-title">Your new digital employees. <span class="mute">24/7. No salary.</span></h2>
+      </div>
+      <p class="sub rv" style="--d:2">8+ specialised AI agents that handle marketing, research, customer communication and content creation, automatically.</p>
+    </header>
+    <div class="agents">
+      <article class="card agent rv" style="--d:2">
+        <div class="agent__top">
+          <span class="ico"><svg><use href="#i-pen"/></svg></span>
+          <div><h3>Aria, content agent</h3><p class="label">Marketing &amp; social media</p></div>
+          <span class="status"><i class="pulse"></i>Runs automatically</span>
+        </div>
+        <p>Writes your monthly posts, emails, blogs and promotional content. Creates visuals and schedules everything automatically across all channels.</p>
+        <p class="log mono" data-log="Scheduling 12 posts for May|Newsletter drafted · 2,400 contacts|4 visuals generated · Limassol tours"></p>
+      </article>
+      <article class="card agent rv" style="--d:3">
+        <div class="agent__top">
+          <span class="ico"><svg><use href="#i-radar"/></svg></span>
+          <div><h3>Market intelligence AI</h3><p class="label">ChatGPT · Gemini · Perplexity</p></div>
+          <span class="status"><i class="pulse"></i>Always on</span>
+        </div>
+        <p>Continuously analyses your competitors, tracks industry trends, identifies high-value keywords and optimises your Google visibility, 24/7.</p>
+        <p class="log mono" data-log="Competitor price change detected · −8%|New keyword: “Cyprus private tours”|Weekly market report ready"></p>
+      </article>
+      <article class="card agent rv" style="--d:4">
+        <div class="agent__top">
+          <span class="ico"><svg><use href="#i-headset"/></svg></span>
+          <div><h3>Front Desk AI</h3><p class="label">Customer communication</p></div>
+          <span class="status"><i class="pulse"></i>Real-time</span>
+        </div>
+        <p>Answers customer questions in real time: booking enquiries, product details, package information. Suggests upsells during checkout automatically.</p>
+        <p class="log mono" data-log="Answered: “Is the airport transfer included?”|Upsell accepted · Sunset cruise +€45|Booking enquiry → confirmed in 2 min"></p>
+      </article>
+      <article class="card agent rv" style="--d:5">
+        <div class="agent__top">
+          <span class="ico"><svg><use href="#i-qr"/></svg></span>
+          <div><h3>Hoop smart widget</h3><p class="label">Digital client portal · QR-based</p></div>
+          <span class="status status--v">21st-century digital card</span>
+        </div>
+        <p>One QR scan gives clients instant access to your full business: bookings, services, loyalty programmes, contact and social media. No app download needed.</p>
+        <p class="log mono" data-log="QR scan · Lobby · menu opened|Loyalty points +20 · Guest #318|Review left · ★★★★★"></p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- 6 · PRICING -->
+<section class="sec pricing" id="pricing" aria-labelledby="price-title">
+  <canvas class="stars" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <header class="head head--center">
+      <p class="eyebrow rv" style="--d:0"><span class="dot"></span>Pricing</p>
+      <h2 class="h2 rv" style="--d:1" id="price-title">Simple, transparent <span class="mute">pricing.</span></h2>
+      <p class="sub rv" style="--d:2">One-time setup. No monthly fees. No hidden costs.</p>
+    </header>
+    <div class="plans">
+      <article class="card plan rv" style="--d:2">
+        <p class="label">Basic</p>
+        <h3>Essential Setup</h3>
+        <p class="price"><span class="from">From</span><b>€1,190</b></p>
+        <ul class="checks">
+          <li>Professional website</li>
+          <li>Full system setup (inventory, pricing, availability)</li>
+          <li>Product &amp; service management</li>
+          <li>Booking &amp; order management module</li>
+          <li>Essential analytics dashboard</li>
+          <li>30 days onboarding support</li>
+        </ul>
+        <a class="btn btn--ghost btn--block" data-link="demo" href="#">Book a demo</a>
+      </article>
+      <article class="card plan plan--pop rv" style="--d:3">
+        <span class="pop">Most popular</span>
+        <p class="label">Premium</p>
+        <h3>Advanced Automation</h3>
+        <p class="price"><span class="from">From</span><b>€1,690</b></p>
+        <ul class="checks">
+          <li>Everything in Basic</li>
+          <li>Custom UI and CRM integrations</li>
+          <li>Advanced forms and automated workflows</li>
+          <li>B2B enquiry module</li>
+          <li>Full AI marketing suite (Aria + agents)</li>
+          <li>SEO setup and Google integration</li>
+          <li>Priority onboarding support, 60 days</li>
+        </ul>
+        <a class="btn btn--primary btn--block" data-link="start" href="#">Get started<svg><use href="#i-arrow"/></svg></a>
+      </article>
+      <article class="card plan rv" style="--d:4">
+        <p class="label">Scale</p>
+        <h3>Full Scale Setup</h3>
+        <p class="price"><span class="from">From</span><b>€2,490</b></p>
+        <ul class="checks">
+          <li>Everything in Premium</li>
+          <li>Multi-branch and sub-agent system</li>
+          <li>B2B marketplace panel</li>
+          <li>Advanced analytics and marketing funnels</li>
+          <li>Custom integrations on request</li>
+          <li>Dedicated account manager, 90 days</li>
+        </ul>
+        <a class="btn btn--ghost btn--block" data-link="consult" href="#">Free consultation</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- 7 · FINAL CTA -->
+<section class="sec cta" id="cta" aria-labelledby="cta-title">
+  <canvas class="stars" aria-hidden="true"></canvas>
+  <div class="glow glow--cta" aria-hidden="true"></div>
+  <div class="wrap cta__in">
+    <p class="eyebrow rv" style="--d:0"><span class="dot"></span>Free 30-minute demo</p>
+    <h2 class="h2 h2--xl rv" style="--d:1" id="cta-title">Stop managing tools. <span class="mute">Start running your business.</span></h2>
+    <p class="sub rv" style="--d:2">From the first customer click to the final sale: one platform, one login, total control. Book a free 30-minute demo and see it live.</p>
+    <div class="btns btns--center rv" style="--d:3">
+      <a class="btn btn--primary" data-link="demo" href="#">Book a free demo<svg><use href="#i-arrow"/></svg></a>
+      <a class="btn btn--ghost" data-link="consult" href="#">Free consultation</a>
+      <a class="btn btn--ghost" data-link="whatsapp" href="#"><svg class="wa"><use href="#i-wa"/></svg>WhatsApp us</a>
+    </div>
+    <p class="contact mono rv" style="--d:4"><a data-link="phone" href="#">+357 22420437</a><span>·</span><a data-link="email" href="#">info@wwe-cy.com</a><span>·</span>Nicosia, Cyprus</p>
+  </div>
+</section>
+
+</main>
+
+<script src="js/tech.js" defer></script>
+</body>
+</html>
