@@ -3,7 +3,7 @@
 The `/travel-tech-platform` page as seven Wix embeds, in the iBOS dashboard style:
 
 - near-black base with frosted glass cards and hairline borders;
-- violet for buttons and interaction, teal for data;
+- deep royal violet (`#4A3FC4` → `#322A8F`) for the buttons, violet for interaction, teal for data;
 - no orange.
 
 Every embed loads the same page, and `?s=` picks the section.
@@ -20,7 +20,7 @@ Live: `https://ibos-cy-digital.github.io/cyprus-map/tech-platform/` (without `?s
 | 4 | Results | `…/tech-platform/?s=results` | 625 | 905 | 1375 |
 | 5 | AI co-pilots | `…/tech-platform/?s=ai` | 790 | 1210 | 1605 |
 | 6 | Pricing | `…/tech-platform/?s=pricing` | 875 | 1325 | 1790 |
-| 7 | Final CTA | `…/tech-platform/?s=cta` | 520 | 470 | 665 |
+| 7 | Final CTA | `…/tech-platform/?s=cta` | 760 | 670 | 890 |
 
 ### Placing the embeds in Wix
 
@@ -58,6 +58,11 @@ Links open in the top window. WhatsApp opens in a new tab.
 - Each module card has a live preview: payment toasts, dynamic prices, channel sync, AI typing, a daily checklist and a revenue chart.
 - AI agent cards type out their activity logs.
 - The Premium pricing card has a rotating light around its border.
+- The final CTA ends in a dot-matrix wordmark ("ONE LOGIN"):
+  - Blurred, scattered dots resolve into letters as a light sweeps across.
+  - The colours run sea blue → indigo → violet.
+  - To change the words, edit `data-word` and `data-word-phone` on the canvas in `index.html` (`|` makes a line break on phones).
+- The final CTA background fades into the navy footer `#0D2236`.
 - Star fields and a cursor light sit in the background.
 
 Every loop runs only while its section is on screen. All motion is off with `prefers-reduced-motion`.

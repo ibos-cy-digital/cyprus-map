@@ -23,6 +23,11 @@
   --lavender: #B7AFFF;
   --violet-dim: rgba(107, 91, 255, .12);
   --violet-border: rgba(107, 91, 255, .45);
+  --royal-1: #4A3FC4; /* primary buttons: deep royal violet */
+  --royal-2: #322A8F;
+  --royal-h1: #5548D6;
+  --royal-h2: #3B32A6;
+  --navy: #0D2236; /* site footer */
   --teal: #2EC4B6;
   --teal-dim: rgba(46, 196, 182, .10);
   --teal-border: rgba(46, 196, 182, .38);
@@ -90,8 +95,8 @@ html.is-single.is-embedded .sec { min-height: 100vh; padding-top: var(--pad-y); 
   background: radial-gradient(closest-side, rgba(107, 91, 255, .24), rgba(107, 91, 255, .08) 55%, transparent); }
 .glow--ai { width: 900px; height: 420px; left: 50%; top: 60%; transform: translate(-50%, -50%);
   background: radial-gradient(closest-side, rgba(107, 91, 255, .12), transparent); }
-.glow--cta { width: 980px; height: 520px; left: 50%; top: 50%; transform: translate(-50%, -50%);
-  background: radial-gradient(closest-side, rgba(107, 91, 255, .26), rgba(46, 196, 182, .05) 60%, transparent); }
+.glow--cta { width: 980px; height: 520px; left: 50%; top: 34%; transform: translate(-50%, -50%);
+  background: radial-gradient(closest-side, rgba(107, 91, 255, .18), rgba(24, 95, 165, .05) 60%, transparent); }
 html.js .glow--cta { animation: breathe 9s ease-in-out infinite; }
 @keyframes breathe { 50% { opacity: .65; transform: translate(-50%, -50%) scale(1.06); } }
 
@@ -156,18 +161,19 @@ html.js .in .mute { animation: sheen 6s ease-in-out 1.2s infinite; }
 .btn svg { width: 17px; height: 17px; stroke-width: 2; transition: transform .25s var(--ease); }
 .btn--primary {
   color: #fff;
-  background: linear-gradient(135deg, var(--violet-2), var(--violet));
-  box-shadow: 0 10px 30px -8px rgba(107, 91, 255, .65), inset 0 1px 0 rgba(255, 255, 255, .22);
+  background: linear-gradient(135deg, var(--royal-1), var(--royal-2));
+  border: 1px solid rgba(155, 144, 255, .28);
+  box-shadow: 0 8px 22px -12px rgba(30, 22, 90, .9), inset 0 1px 0 rgba(255, 255, 255, .12);
   overflow: hidden;
 }
 .btn--primary::after { /* light sweep */
   content: ""; position: absolute; inset: 0;
-  background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, .28) 50%, transparent 70%);
+  background: linear-gradient(110deg, transparent 35%, rgba(255, 255, 255, .10) 50%, transparent 65%);
   transform: translateX(-120%);
 }
-html.js .in .btn--primary::after { animation: sweep 5.5s ease-in-out 1.6s infinite; }
+html.js .in .btn--primary::after { animation: sweep 9s ease-in-out 2s infinite; }
 @keyframes sweep { 0% { transform: translateX(-120%); } 22%, 100% { transform: translateX(120%); } }
-.btn--primary:hover { transform: translateY(-2px); box-shadow: 0 16px 38px -8px rgba(107, 91, 255, .8), inset 0 1px 0 rgba(255, 255, 255, .25); }
+.btn--primary:hover { transform: translateY(-2px); background: linear-gradient(135deg, var(--royal-h1), var(--royal-h2)); border-color: rgba(155, 144, 255, .45); box-shadow: 0 12px 28px -12px rgba(46, 36, 140, .95), inset 0 1px 0 rgba(255, 255, 255, .14); }
 .btn--primary:hover svg { transform: translateX(3px); }
 .btn--ghost { color: var(--text); background: rgba(255, 255, 255, .03); border: 1px solid var(--line-2); }
 .btn--ghost:hover { border-color: var(--violet-border); background: var(--violet-dim); transform: translateY(-2px); }
@@ -423,12 +429,16 @@ html.js .in .spark__area { opacity: 1; }
 @property --ang { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
 html.js .in .plan--pop::after { animation: ang 6s linear infinite; }
 @keyframes ang { to { --ang: 360deg; } }
-.pop { position: absolute; top: -13px; left: 50%; transform: translateX(-50%); padding: 5px 12px; border-radius: 8px; font-family: var(--f-mono); font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; color: #fff; background: linear-gradient(135deg, var(--violet-2), var(--violet)); box-shadow: 0 6px 18px -4px rgba(107, 91, 255, .7); white-space: nowrap; }
+.pop { position: absolute; top: -13px; left: 50%; transform: translateX(-50%); padding: 5px 12px; border-radius: 8px; font-family: var(--f-mono); font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; color: #fff; background: linear-gradient(135deg, var(--royal-1), var(--royal-2)); border: 1px solid rgba(155, 144, 255, .35); box-shadow: 0 6px 16px -8px rgba(30, 22, 90, .9); white-space: nowrap; }
 
 /* =======================================================================
    7 · FINAL CTA
    ======================================================================= */
+.cta { background: linear-gradient(180deg, var(--bg) 0%, var(--bg) 38%, #0E0E22 66%, #0F1530 84%, var(--navy) 100%); }
+.cta .stars { -webkit-mask-image: linear-gradient(#000 60%, transparent); mask-image: linear-gradient(#000 60%, transparent); }
 .cta__in { text-align: center; }
+.mark { position: relative; width: 100%; aspect-ratio: 1200 / 200; margin-top: 40px; }
+.mark canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
 .cta .sub { margin-left: auto; margin-right: auto; max-width: 640px; margin-top: 20px; }
 .contact { margin-top: 28px; display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 12px; font-size: 12.5px; letter-spacing: .06em; color: var(--muted); }
 .contact a { transition: color .25s; }
@@ -498,6 +508,7 @@ html.js .in .plan--pop::after { animation: ang 6s linear infinite; }
   .plan--pop { grid-column: auto; }
   .price b { font-size: 38px; }
   .contact { flex-direction: column; gap: 4px; }
+  .mark { aspect-ratio: 350 / 190; max-width: 420px; margin: 30px auto 0; }
   .contact span { display: none; }
 }
 
