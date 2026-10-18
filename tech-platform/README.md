@@ -18,7 +18,7 @@ Live: `https://ibos-cy-digital.github.io/cyprus-map/tech-platform/` (without `?s
 | 2 | Who it's for | `…/tech-platform/?s=audience` | 640 | 720 | 1010 |
 | 3 | Platform modules | `…/tech-platform/?s=modules` | 1250 | 1670 | 2930 |
 | 4 | Results | `…/tech-platform/?s=results` | 625 | 905 | 1375 |
-| 5 | AI co-pilots | `…/tech-platform/?s=ai` | 790 | 1210 | 1605 |
+| 5 | AI co-pilots | `…/tech-platform/?s=ai` | 790 | 1240 | 1605 |
 | 6 | Pricing | `…/tech-platform/?s=pricing` | 875 | 1325 | 1790 |
 | 7 | Final CTA | `…/tech-platform/?s=cta` | 760 | 670 | 890 |
 
@@ -42,18 +42,17 @@ At other widths inside a breakpoint, for example a 1001 px desktop or a 320 px p
 
 All button targets are in `LINKS` at the top of `js/tech.js`:
 
-| Key | Default target |
+| Buttons | Target |
 |---|---|
-| demo / start / consult / contact | email to info@wwe-cy.com, with a subject |
-| pricing | `wwe-cy.com/travel-tech-platform#pricing` |
-| whatsapp | `wa.me/35722420437` |
-| phone / email | phone number and email address |
+| Book a free demo, View pricing, Contact us, Book a demo, Get started, Free consultation | the demo request form `https://www.wwe-cy.com/demo-request-platform` |
+| WhatsApp us | `wa.me/35722420437` |
+| Phone, email | the phone number and email address |
 
 Links open in the top window. WhatsApp opens in a new tab.
 
 ## Motion
 
-- Sections reveal when they scroll into view, and the numbers count up.
+- Each card and heading reveals on its own once it is well on screen. The numbers and charts start only then, so a tall frame never finishes its animations before you reach them.
 - The hero has a 3D orbit of the six modules around the "One login" core.
 - Each module card has a live preview: payment toasts, dynamic prices, channel sync, AI typing, a daily checklist and a revenue chart.
 - AI agent cards type out their activity logs.

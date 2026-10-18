@@ -213,9 +213,9 @@ html.js .in .btn--primary::after { animation: sweep 9s ease-in-out 2s infinite; 
 
 /* ---------- reveal ---------- */
 html.js .rv { opacity: 0; transform: translateY(18px); transition: opacity .8s var(--ease), transform .8s var(--ease); transition-delay: calc(var(--d, 0) * 90ms); }
-html.js .in .rv { opacity: 1; transform: none; }
+html.js .rv.is-in { opacity: 1; transform: none; }
 html.js .card.rv { transition: opacity .8s var(--ease), transform .8s var(--ease), border-color .35s, box-shadow .35s; transition-delay: calc(var(--d, 0) * 90ms), calc(var(--d, 0) * 90ms), 0s, 0s; }
-html.js .in .card.rv:hover { transform: translateY(-3px); transition-delay: 0s; }
+html.js .card.rv.is-in:hover { transform: translateY(-3px); transition-delay: 0s; }
 
 /* =======================================================================
    1 · HERO
@@ -381,8 +381,8 @@ html.js .in .pulse { animation: pulse 1.8s ease-out infinite; }
 .spark { display: block; width: calc(100% + 44px); height: 48px; margin: 16px -22px 0; }
 .spark__line { fill: none; stroke: var(--violet-soft); stroke-width: 2; vector-effect: non-scaling-stroke; stroke-dasharray: 260; stroke-dashoffset: 260; }
 .spark__area { fill: rgba(107, 91, 255, .10); stroke: none; opacity: 0; transition: opacity 1s .9s; }
-html.js .in .spark__line { animation: draw 1.6s var(--ease) .5s forwards; }
-html.js .in .spark__area { opacity: 1; }
+html.js .is-in .spark__line { animation: draw 2s var(--ease) .6s forwards; }
+html.js .is-in .spark__area { opacity: 1; }
 @keyframes draw { to { stroke-dashoffset: 0; } }
 .kpi__foot { margin-top: 14px; font-size: 13.5px; color: var(--muted); line-height: 1.5; }
 
