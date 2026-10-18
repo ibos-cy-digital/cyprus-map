@@ -17,7 +17,7 @@
     consult: FORM,
     contact: FORM,
     pricing: FORM,
-    whatsapp: 'https://wa.me/35722420437',
+    whatsapp: 'https://wa.me/35799210460',
     phone: 'tel:+35722420437',
     email: 'mailto:info@wwe-cy.com'
   };
