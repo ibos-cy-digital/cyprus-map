@@ -45,7 +45,7 @@ All button targets are in `LINKS` at the top of `js/tech.js`:
 | Buttons | Target |
 |---|---|
 | Book a free demo, View pricing, Contact us, Book a demo, Get started, Free consultation | the demo request form `https://www.wwe-cy.com/demo-request-platform` |
-| WhatsApp us | `wa.me/35722420437` |
+| WhatsApp us | `wa.me/35799210460` |
 | Phone, email | the phone number and email address |
 
 Links open in the top window. WhatsApp opens in a new tab.
