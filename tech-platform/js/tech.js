@@ -310,6 +310,87 @@
     on('ai', function () { d = setTimeout(tp.start, 500 + i * 700); }, function () { clearTimeout(d); tp.stop(); });
   });
 
+  /* ---------- Results: spotlight beam ----------
+     The beam turns and shifts colour with the scroll (sea blue → violet →
+     teal) and sways gently. Inside a cross-origin Wix frame the page scroll
+     is not readable, so the position comes from which part of the section
+     is visible (IntersectionObserver works against the top-level viewport). */
+  (function () {
+    var sec = document.getElementById('results'), beam = sec && sec.querySelector('.beam');
+    if (!beam) return;
+    var STOPS = [[59, 143, 224], [124, 108, 255], [46, 196, 182]];
+    var target = .2, cur = .2, raf = 0;
+    function mix(t) {
+      t = Math.max(0, Math.min(1, t));
+      var seg = t < .5 ? 0 : 1, k = t < .5 ? t * 2 : (t - .5) * 2, A = STOPS[seg], B = STOPS[seg + 1];
+      return A.map(function (v, i) { return Math.round(v + (B[i] - v) * k); }).join(',');
+    }
+    function paint(t, now) {
+      var sway = reduced ? 0 : 5 * Math.sin(now / 2600);
+      beam.style.setProperty('--ba', (-14 + 64 * t + sway).toFixed(2) + 'deg');
+      beam.style.setProperty('--b1', mix(t * .9));
+      beam.style.setProperty('--b2', mix(Math.min(1, t * .9 + .35)));
+    }
+    paint(cur, 0);
+    if (reduced || !('IntersectionObserver' in window)) return;
+    var th = []; for (var i = 0; i <= 100; i++) th.push(i / 100);
+    new IntersectionObserver(function (es) {
+      var e = es[0], b = e.boundingClientRect, r = e.intersectionRect;
+      if (!e.isIntersecting || !b.height) return;
+      target = Math.max(0, Math.min(1, ((r.top + r.bottom) / 2 - b.top) / b.height));
+    }, { threshold: th }).observe(sec);
+    function frame(now) { cur += (target - cur) * .05; paint(cur, now); raf = requestAnimationFrame(frame); }
+    on('results', function () { cancelAnimationFrame(raf); raf = requestAnimationFrame(frame); }, function () { cancelAnimationFrame(raf); });
+  })();
+
+  /* ---------- Results: live dashboard table with an AI cursor ---------- */
+  (function () {
+    var grid = document.getElementById('sheet'), sheet = grid && grid.parentNode;
+    if (!grid) return;
+    var hl = document.getElementById('cell-hl'), cursor = document.getElementById('cursor'), tag = cursor.querySelector('.cursor__tag');
+    var rows = [
+      ['W8', 212, 26.9, 46], ['W7', 204, 25.8, 44], ['W6', 196, 24.7, 43], ['W5', 187, 23.1, 41],
+      ['W4', 178, 21.9, 38], ['W3', 171, 20.6, 36], ['W2', 159, 19.2, 33], ['W1', 148, 18.4, 31]
+    ];
+    function fmt(c, v) { return c === 1 ? String(v) : c === 2 ? '€' + v.toFixed(1) + 'k' : v + '%'; }
+    rows.forEach(function (r, ri) {
+      var row = document.createElement('div');
+      row.className = 'sheet__row';
+      row.style.opacity = Math.max(.25, 1 - ri * .11).toFixed(2);
+      r.forEach(function (v, ci) { var sp = document.createElement('span'); sp.textContent = ci ? fmt(ci, v) : v; row.appendChild(sp); });
+      grid.appendChild(row);
+    });
+    var AGENTS = [
+      { n: 'Front Desk AI', c: '#2EC4B6', k: '#04201D', col: 1, add: 1 },
+      { n: 'Aria · AI', c: '#7C6CFF', k: '#FFFFFF', col: 2, add: .3 },
+      { n: 'CRM', c: '#3B8FE0', k: '#FFFFFF', col: 3, add: 1 },
+      { n: 'Pricing AI', c: '#B7AFFF', k: '#160F3A', col: 2, add: .2 }
+    ];
+    var step = 0, h = 0, t2 = 0;
+    function cellAt(ri, ci) { return grid.children[ri + 1].children[ci]; }
+    function go() {
+      var a = AGENTS[step % AGENTS.length], ri = step % 3 === 2 ? 1 : 0, el = cellAt(ri, a.col);
+      var sr = sheet.getBoundingClientRect(), cr = el.getBoundingClientRect();
+      var x = cr.left - sr.left, y = cr.top - sr.top;
+      hl.style.cssText = 'left:' + (x + 3) + 'px;top:' + (y + 3) + 'px;width:' + (cr.width - 6) + 'px;height:' + (cr.height - 6) + 'px;opacity:1;--hc:' + a.c;
+      tag.textContent = a.n;
+      tag.style.setProperty('--tc', a.c); tag.style.setProperty('--tk', a.k);
+      cursor.style.opacity = 1;
+      var tw = tag.offsetWidth, th = tag.offsetHeight;
+      cursor.style.transform = 'translate(' + Math.max(8, Math.min(sr.width - tw - 8, x + cr.width * .55)) + 'px,' + Math.max(40, y - th + 8) + 'px)';
+      clearTimeout(t2);
+      t2 = setTimeout(function () { // the agent "writes" the cell
+        rows[ri][a.col] = Math.round((rows[ri][a.col] + a.add) * 10) / 10;
+        el.textContent = fmt(a.col, rows[ri][a.col]);
+        el.classList.add('flash');
+        setTimeout(function () { el.classList.remove('flash'); }, 900);
+      }, 800);
+      step++;
+    }
+    if (reduced) { return; }
+    on('results', function () { if (!h) { setTimeout(go, 900); h = setInterval(go, 2400); } }, function () { clearInterval(h); h = 0; });
+  })();
+
   /* ---------- dot-matrix wordmark (final CTA) ----------
      The words are rasterised off-screen and turned into a halftone grid.
      When the section comes into view a light sweeps from right to left:

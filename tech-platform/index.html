@@ -10,7 +10,7 @@
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/tech.css">
   <!-- before first paint: embed state, reduced motion and which section this frame shows (?s=hero|audience|modules|results|ai|pricing|cta) -->
   <script>
@@ -258,6 +258,8 @@
 <!-- 4 · RESULTS -->
 <section class="sec results" id="results" aria-labelledby="res-title">
   <canvas class="stars" aria-hidden="true"></canvas>
+  <!-- spotlight beam: its angle and colour follow the scroll -->
+  <div class="beam" aria-hidden="true"><span class="beam__ray beam__ray--a"></span><span class="beam__ray beam__ray--b"></span><span class="beam__core"></span></div>
   <div class="wrap">
     <header class="head head--split">
       <div>
@@ -266,35 +268,39 @@
       </div>
       <p class="sub rv" style="--d:2">Average results reported by businesses using the platform after 90 days.</p>
     </header>
-    <div class="kpis">
-      <article class="card kpi rv" style="--d:2">
-        <p class="label">Sales growth</p>
-        <p class="kpi__val"><span data-count="40">0</span>%</p>
-        <p class="kpi__delta"><svg><use href="#i-arrow"/></svg>up in 90 days</p>
-        <svg class="spark" viewBox="0 0 200 48" preserveAspectRatio="none"><path class="spark__area" d="M0 44 L25 40 L50 41 L75 33 L100 30 L125 24 L150 20 L175 12 L200 6 L200 48 L0 48 Z"/><path class="spark__line" d="M0 44 L25 40 L50 41 L75 33 L100 30 L125 24 L150 20 L175 12 L200 6"/></svg>
-        <p class="kpi__foot">Multi-channel distribution combined with AI-driven marketing campaigns.</p>
-      </article>
-      <article class="card kpi rv" style="--d:3">
-        <p class="label">Manual work</p>
-        <p class="kpi__val"><span data-count="70">0</span>%</p>
-        <p class="kpi__delta is-down"><svg><use href="#i-arrow"/></svg>less, every day</p>
-        <svg class="spark" viewBox="0 0 200 48" preserveAspectRatio="none"><path class="spark__area" d="M0 6 L25 9 L50 8 L75 16 L100 22 L125 27 L150 34 L175 38 L200 42 L200 48 L0 48 Z"/><path class="spark__line" d="M0 6 L25 9 L50 8 L75 16 L100 22 L125 27 L150 34 L175 38 L200 42"/></svg>
-        <p class="kpi__foot">End-to-end automation across bookings, payments, marketing and operations.</p>
-      </article>
-      <article class="card kpi rv" style="--d:4">
-        <p class="label">Operating costs</p>
-        <p class="kpi__val"><span data-count="30">0</span>%</p>
-        <p class="kpi__delta is-down"><svg><use href="#i-arrow"/></svg>lower costs</p>
-        <svg class="spark" viewBox="0 0 200 48" preserveAspectRatio="none"><path class="spark__area" d="M0 10 L25 12 L50 9 L75 18 L100 20 L125 26 L150 27 L175 33 L200 36 L200 48 L0 48 Z"/><path class="spark__line" d="M0 10 L25 12 L50 9 L75 18 L100 20 L125 26 L150 27 L175 33 L200 36"/></svg>
-        <p class="kpi__foot">One platform replaces 5+ separate tools: zero duplication, one invoice.</p>
-      </article>
-      <article class="card kpi rv" style="--d:5">
-        <p class="label">More leads</p>
-        <p class="kpi__val"><span data-count="25">0</span>%</p>
-        <p class="kpi__delta"><svg><use href="#i-arrow"/></svg>more enquiries</p>
-        <svg class="spark" viewBox="0 0 200 48" preserveAspectRatio="none"><path class="spark__area" d="M0 40 L25 38 L50 34 L75 36 L100 28 L125 26 L150 18 L175 16 L200 10 L200 48 L0 48 Z"/><path class="spark__line" d="M0 40 L25 38 L50 34 L75 36 L100 28 L125 26 L150 18 L175 16 L200 10"/></svg>
-        <p class="kpi__foot">Smart CRM with automated follow-ups and abandoned cart recovery.</p>
-      </article>
+    <div class="res">
+      <div class="glass-kpis">
+        <article class="gk rv" style="--d:2">
+          <p class="gk__val"><span class="spk" aria-hidden="true"></span><span data-count="40">0</span>%</p>
+          <p class="gk__label">Sales growth</p>
+          <p class="gk__foot">Multi-channel distribution with AI-driven campaigns</p>
+        </article>
+        <article class="gk rv" style="--d:3">
+          <p class="gk__val"><span class="spk" aria-hidden="true"></span><span data-count="70">0</span>%</p>
+          <p class="gk__label">Less manual work</p>
+          <p class="gk__foot">End-to-end automation across bookings and payments</p>
+        </article>
+        <article class="gk rv" style="--d:4">
+          <p class="gk__val"><span class="spk" aria-hidden="true"></span><span data-count="30">0</span>%</p>
+          <p class="gk__label">Lower operating costs</p>
+          <p class="gk__foot">One platform replaces 5+ tools, one invoice</p>
+        </article>
+        <article class="gk rv" style="--d:5">
+          <p class="gk__val"><span class="spk" aria-hidden="true"></span><span data-count="25">0</span>%</p>
+          <p class="gk__label">More leads</p>
+          <p class="gk__foot">Smart CRM follow-ups and abandoned cart recovery</p>
+        </article>
+      </div>
+
+      <!-- live dashboard table: an AI cursor moves from cell to cell -->
+      <div class="sheet rv" style="--d:3" aria-hidden="true">
+        <div class="sheet__bar"><span class="sheet__dots"><i></i><i></i><i></i></span><span class="mono">Platform dashboard<span class="sheet__sub"> · last 8 weeks</span></span><span class="live__tag"><i class="pulse"></i>Live</span></div>
+        <div class="sheet__grid" id="sheet">
+          <div class="sheet__head"><span><i style="--c:#7C6CFF"></i>Week</span><span><i style="--c:#2EC4B6"></i>Bookings</span><span><i style="--c:#3B8FE0"></i>Revenue</span><span><i style="--c:#B7AFFF"></i>Direct</span></div>
+        </div>
+        <div class="cursor" id="cursor"><span class="cursor__tag">Aria · AI</span></div>
+        <div class="cell-hl" id="cell-hl"></div>
+      </div>
     </div>
   </div>
 </section>
