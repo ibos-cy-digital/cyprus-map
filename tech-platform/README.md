@@ -17,7 +17,7 @@ Live: `https://ibos-cy-digital.github.io/cyprus-map/tech-platform/` (without `?s
 | 1 | Hero | `…/tech-platform/?s=hero` | 730 | 1060 | 1060 |
 | 2 | Who it's for | `…/tech-platform/?s=audience` | 640 | 720 | 1010 |
 | 3 | Platform modules | `…/tech-platform/?s=modules` | 1250 | 1670 | 2930 |
-| 4 | Results | `…/tech-platform/?s=results` | 625 | 905 | 1375 |
+| 4 | Results | `…/tech-platform/?s=results` | 835 | 1290 | 1120 |
 | 5 | AI co-pilots | `…/tech-platform/?s=ai` | 790 | 1240 | 1605 |
 | 6 | Pricing | `…/tech-platform/?s=pricing` | 875 | 1325 | 1790 |
 | 7 | Final CTA | `…/tech-platform/?s=cta` | 760 | 670 | 890 |
@@ -53,6 +53,7 @@ Links open in the top window. WhatsApp opens in a new tab.
 ## Motion
 
 - Each card and heading reveals on its own once it is well on screen. The numbers and charts start only then, so a tall frame never finishes its animations before you reach them.
+- Results: staggered glass KPI cards over a spotlight beam that turns and shifts colour with the scroll (sea blue → violet → teal), plus a live dashboard table where AI agents move from cell to cell and update the figures.
 - The hero has a 3D orbit of the six modules around the "One login" core.
 - Each module card has a live preview: payment toasts, dynamic prices, channel sync, AI typing, a daily checklist and a revenue chart.
 - AI agent cards type out their activity logs.
