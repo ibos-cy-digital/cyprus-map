@@ -1,0 +1,8 @@
+:HL["/cyprus-map/br-electric/_next/static/chunks/2msjh5uxeo657.css","style"]
+:HL["/cyprus-map/br-electric/_next/static/media/068feab4deafcd0f-s.p.0_kz_z3o_slvt.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/cyprus-map/br-electric/_next/static/media/82450a180bcad83c-s.p.0p-wng2nn8o-p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/cyprus-map/br-electric/_next/static/media/db545dba463279ae-s.p.1cp9-4nby68jc.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/cyprus-map/br-electric/_next/static/media/fbb7028efdf70529-s.p.1_0gbi-gsbqmd.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+2:[["children",{"s":"__PAGE__","h":160}]]
+1:[["children",{"s":"(sr)","h":112,"c":"$Q2"}]]
+0:{"b":"Stljr1zCdOl0sE-J52f7e","t":{"t":{"s":"","h":80,"c":"$Q1"}}}
